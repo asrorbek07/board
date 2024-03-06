@@ -14,7 +14,7 @@ import lombok.*;
 @AllArgsConstructor
 public class ReadCheckCdo extends CreationDataObject {
     //
-    private IdName actor;
+    private IdName reader;
     private String postId;
 
     public static ReadCheckCdo fromJson(String json) {
@@ -31,7 +31,7 @@ public class ReadCheckCdo extends CreationDataObject {
         IdName actor = IdName.of(actorId, actorName);
         return ReadCheckCdo
                 .builder()
-                .actor(actor)
+                .reader(actor)
                 .postId(PostCdo.sample().genId())
                 .build();
     }

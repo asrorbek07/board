@@ -1,4 +1,4 @@
-package io.vizend.board.feature.faq.faq.domain.sdo;
+package io.vizend.board.feature.faq.faq.sdo.cdo;
 
 import io.vizend.accent.domain.entity.CreationDataObject;
 import io.vizend.accent.util.json.JsonUtil;

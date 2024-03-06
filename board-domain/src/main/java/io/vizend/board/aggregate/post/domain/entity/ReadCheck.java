@@ -20,7 +20,7 @@ import org.springframework.beans.BeanUtils;
 public class ReadCheck extends StageEntity {
     //
     @FieldImmutable
-    private IdName actor;
+    private IdName reader;
     @FieldSourceId
     private String postId;
 

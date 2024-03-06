@@ -10,11 +10,8 @@ import io.vizend.accent.util.json.JsonUtil;
 import io.vizend.board.aggregate.board.domain.entity.sdo.BoardCdo;
 import io.vizend.board.aggregate.board.domain.entity.vo.BoardPolicy;
 import io.vizend.board.aggregate.board.domain.entity.vo.BoardType;
-import io.vizend.board.aggregate.post.domain.entity.Post;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
-
-import java.util.List;
 
 @Getter
 @Setter
@@ -84,9 +81,6 @@ public class Board extends StageEntity {
                     break;
                 case "description":
                     this.description = value;
-                    break;
-                case "base64Photo":
-                    this.base64Photo = value;
                     break;
                 case "boardPolicy":
                     this.boardPolicy = JsonUtil.fromJson(value, BoardPolicy.class);

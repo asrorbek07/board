@@ -20,7 +20,7 @@ import lombok.*;
 @AllArgsConstructor
 public class ThumbUpRecordCdo extends CreationDataObject {
     //
-    private IdName actor;
+    private IdName reader;
     private SentenceType sentenceType;
     private String sentenceId;
 
@@ -37,7 +37,7 @@ public class ThumbUpRecordCdo extends CreationDataObject {
         IdName actor = IdName.of(actorId, actorName);
         return ThumbUpRecordCdo
                 .builder()
-                .actor(actor)
+                .reader(actor)
                 .sentenceType(SentenceType.Post)
                 .sentenceId(PostCdo.sample().genId())
                 .build();

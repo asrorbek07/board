@@ -28,7 +28,7 @@ import java.util.UUID;
 public class ThumbUpRecord extends StageEntity implements DomainAggregate {
     //
     @FieldImmutable
-    private IdName actor;
+    private IdName reader;
     @FieldImmutable
     private SentenceType sentenceType;
     @FieldSourceId
