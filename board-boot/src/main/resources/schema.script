@@ -1,0 +1,12 @@
+## DB ìŠ¤í‚¤ë§ˆ ìƒ�ì„±
+
+use board
+db.createUser(
+  {
+    user: "board",
+    pwd: "board",
+    roles : [
+      { role: "readWrite", db: "board" }
+    ]
+  }
+);

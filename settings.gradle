@@ -1,0 +1,21 @@
+pluginManagement {
+    repositories {
+        maven {
+            credentials {
+                username System.getenv('NEXUS_ID') ?: nexususer
+                password System.getenv('NEXUS_PASSWORD') ?: nexuspassword
+            }
+            url "${nexusBaseUrl}/${nexusPublicRepository}"
+            allowInsecureProtocol true
+        }
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = 'board'
+include 'board-domain'
+include 'board-feature'
+include 'board-event'
+include 'board-facade'
+include 'board-boot'
+include 'board-client'

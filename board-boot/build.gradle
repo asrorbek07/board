@@ -1,0 +1,33 @@
+buildscript {
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'jacoco'
+}
+
+
+test {
+    useJUnitPlatform()
+    finalizedBy 'jacocoTestReport'
+}
+
+dependencies {
+    api project(':board-facade')
+    implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    implementation("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb:${springBootVersion}")
+    implementation("org.springframework.security.oauth:spring-security-oauth2:${springSecurityOauth2Version}")
+    implementation("org.springframework.security:spring-security-jwt:${springSecurityJwtVersion}")
+    implementation("org.glassfish.jaxb:jaxb-runtime:${jaxbVersion}")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+    testImplementation('org.spockframework:spock-core:2.3-groovy-3.+')
+    testImplementation('org.codehaus.groovy:groovy-all:3.+')
+    testImplementation('org.junit.jupiter:junit-jupiter-api:5.+')
+    testImplementation('org.junit.jupiter:junit-jupiter-engine:5.+')
+    testImplementation('org.mockito:mockito-core:4.+')
+    testImplementation('org.mockito:mockito-junit-jupiter:4.+')
+}
