@@ -17,7 +17,6 @@ import lombok.*;
 @AllArgsConstructor
 public class BoardPolicy implements ValueObject {
     //
-    private boolean photoRequired;
     private DisplayNameType displayNameType;
     private PostRule postRule;
     private CommentRule commentRule;
@@ -26,7 +25,6 @@ public class BoardPolicy implements ValueObject {
         //
         return BoardPolicy
                 .builder()
-                .photoRequired(false)
                 .displayNameType(DisplayNameType.Nickname)
                 .postRule(PostRule.defaultRule())
                 .commentRule(CommentRule.defaultRule())

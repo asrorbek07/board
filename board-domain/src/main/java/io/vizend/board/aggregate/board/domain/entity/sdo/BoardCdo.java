@@ -1,5 +1,6 @@
 package io.vizend.board.aggregate.board.domain.entity.sdo;
 
+import io.vizend.accent.domain.context.StageContext;
 import io.vizend.accent.domain.entity.CreationDataObject;
 import io.vizend.accent.util.json.JsonUtil;
 import io.vizend.board.aggregate.board.domain.entity.Board;
@@ -42,9 +43,9 @@ public class BoardCdo extends CreationDataObject {
         System.out.println(sample().toPrettyJson());
     }
 
-    public String genId(String stageId) {
+    public String genId() {
         //
-        return Board.genId(stageId, sequence);
+        return Board.genId(StageContext.get().getStageId(), boardType, sequence);
     }
 
     public String toString() {

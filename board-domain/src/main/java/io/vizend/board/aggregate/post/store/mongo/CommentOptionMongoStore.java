@@ -5,6 +5,9 @@
 */
 package io.vizend.board.aggregate.post.store.mongo;
 
+import io.vizend.board.aggregate.post.domain.entity.Comment;
+import io.vizend.board.aggregate.post.store.mongo.odm.CommentDoc;
+import io.vizend.board.aggregate.post.store.mongo.odm.PostDoc;
 import org.springframework.stereotype.Repository;
 import io.vizend.board.aggregate.post.store.CommentOptionStore;
 import io.vizend.board.aggregate.post.store.mongo.repository.CommentMongoRepository;
@@ -12,6 +15,8 @@ import org.springframework.data.domain.Pageable;
 import io.vizend.accent.domain.type.Offset;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+
+import java.util.List;
 
 @Repository
 public class CommentOptionMongoStore implements CommentOptionStore {
@@ -30,5 +35,12 @@ public class CommentOptionMongoStore implements CommentOptionStore {
         } else {
             return PageRequest.of(offset.page(), offset.limit());
         }
+    }
+
+    @Override
+    public List<Comment> retrieveAllByPostId(String postId) {
+        //
+        List<CommentDoc> posts = commentMongoRepository.findAllByPostId(postId);
+        return CommentDoc.toDomains(posts);
     }
 }

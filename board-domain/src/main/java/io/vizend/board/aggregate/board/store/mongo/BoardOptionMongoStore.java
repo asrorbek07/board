@@ -5,6 +5,9 @@
 */
 package io.vizend.board.aggregate.board.store.mongo;
 
+import io.vizend.board.aggregate.board.domain.entity.Board;
+import io.vizend.board.aggregate.board.domain.entity.vo.BoardType;
+import io.vizend.board.aggregate.board.store.mongo.odm.BoardDoc;
 import org.springframework.stereotype.Repository;
 import io.vizend.board.aggregate.board.store.BoardOptionStore;
 import io.vizend.board.aggregate.board.store.mongo.repository.BoardMongoRepository;
@@ -12,6 +15,9 @@ import org.springframework.data.domain.Pageable;
 import io.vizend.accent.domain.type.Offset;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class BoardOptionMongoStore implements BoardOptionStore {
@@ -31,4 +37,13 @@ public class BoardOptionMongoStore implements BoardOptionStore {
             return PageRequest.of(offset.page(), offset.limit());
         }
     }
+
+
+    @Override
+    public List<Board> retrieveAllByBoardType(BoardType boardType) {
+        //
+        List<BoardDoc> boardDocs = boardMongoRepository.findAllByBoardType(boardType);
+        return boardDocs.stream().map(BoardDoc::toDomain).collect(Collectors.toList());
+    }
+
 }

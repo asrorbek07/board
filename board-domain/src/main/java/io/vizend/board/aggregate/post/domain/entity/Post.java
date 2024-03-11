@@ -93,11 +93,11 @@ public class Post extends StageEntity implements DomainAggregate {
                 case "postState":
                     this.postState = PostState.valueOf(value);
                     break;
-                case "commentRule":
-                    this.commentRule = JsonUtil.fromJson(value, CommentRule.class);
-                    break;
                 case "reportOption":
                     this.reportOption = JsonUtil.fromJson(value, ReportOption.class);
+                    break;
+                case "commentRule":
+                    this.commentRule = JsonUtil.fromJson(value, CommentRule.class);
                     break;
                 default:
                     throw new IllegalArgumentException("Update not allowed: " + nameValue);

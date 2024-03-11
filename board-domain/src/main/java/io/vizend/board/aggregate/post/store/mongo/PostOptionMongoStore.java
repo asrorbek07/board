@@ -5,6 +5,8 @@
 */
 package io.vizend.board.aggregate.post.store.mongo;
 
+import io.vizend.board.aggregate.post.domain.entity.Post;
+import io.vizend.board.aggregate.post.store.mongo.odm.PostDoc;
 import org.springframework.stereotype.Repository;
 import io.vizend.board.aggregate.post.store.PostOptionStore;
 import io.vizend.board.aggregate.post.store.mongo.repository.PostMongoRepository;
@@ -12,6 +14,9 @@ import org.springframework.data.domain.Pageable;
 import io.vizend.accent.domain.type.Offset;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class PostOptionMongoStore implements PostOptionStore {
@@ -30,5 +35,12 @@ public class PostOptionMongoStore implements PostOptionStore {
         } else {
             return PageRequest.of(offset.page(), offset.limit());
         }
+    }
+
+    @Override
+    public List<Post> retrieveAllByBoardId(String boardId) {
+        List<PostDoc> postDocs = postMongoRepository.findAllByBoardId(boardId);
+        return postDocs.stream().map(PostDoc::toDomain).collect(Collectors.toList());
+
     }
 }

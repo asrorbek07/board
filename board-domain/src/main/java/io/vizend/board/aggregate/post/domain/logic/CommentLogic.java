@@ -111,4 +111,9 @@ public class CommentLogic {
                 break;
         }
     }
+
+    public List<Comment> findCommentsByPostId(String postId) {
+        //
+        return commentOptionStore.retrieveAllByPostId(postId);
+    }
 }

@@ -111,4 +111,9 @@ public class ReplyLogic {
                 break;
         }
     }
+
+    public List<Reply> findReplyByCommentId(String commentId) {
+        //
+        return replyOptionStore.retrieveAllByCommentId(commentId);
+    }
 }

@@ -5,6 +5,7 @@
 */
 package io.vizend.board.aggregate.post.domain.logic;
 
+import io.vizend.board.aggregate.board.store.BoardStore;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import io.vizend.board.aggregate.post.store.PostStore;
@@ -110,5 +111,10 @@ public class PostLogic {
                 postStore.delete(postEvent.getPostId());
                 break;
         }
+    }
+
+    public List<Post> findPostsByBoardId(String boardId) {
+
+        return postOptionStore.retrieveAllByBoardId(boardId);
     }
 }

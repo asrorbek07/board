@@ -5,6 +5,8 @@
 */
 package io.vizend.board.aggregate.post.store.mongo;
 
+import io.vizend.board.aggregate.post.domain.entity.Reply;
+import io.vizend.board.aggregate.post.store.mongo.odm.ReplyDoc;
 import org.springframework.stereotype.Repository;
 import io.vizend.board.aggregate.post.store.ReplyOptionStore;
 import io.vizend.board.aggregate.post.store.mongo.repository.ReplyMongoRepository;
@@ -13,9 +15,11 @@ import io.vizend.accent.domain.type.Offset;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
+import java.util.List;
+
 @Repository
 public class ReplyOptionMongoStore implements ReplyOptionStore {
-    /* Gen by Vizend Studio v5.1.0 */
+    //
     private final ReplyMongoRepository replyMongoRepository;
 
     public ReplyOptionMongoStore(ReplyMongoRepository replyMongoRepository) {
@@ -30,5 +34,13 @@ public class ReplyOptionMongoStore implements ReplyOptionStore {
         } else {
             return PageRequest.of(offset.page(), offset.limit());
         }
+    }
+
+    @Override
+    public List<Reply> retrieveAllByCommentId(String commentId) {
+        //
+        List<ReplyDoc> replies = replyMongoRepository.findAllByCommentId(commentId);
+        return ReplyDoc.toDomains(replies);
+
     }
 }

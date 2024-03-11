@@ -12,8 +12,6 @@ import lombok.*;
 public class PostRule implements ValueObject {
     //
     private boolean anonymous;
-    private boolean fileAttached;
-    private int maxFileSizeInMegaByte;
     private boolean thumbUp;
 
     public static PostRule defaultRule() {
@@ -21,8 +19,6 @@ public class PostRule implements ValueObject {
         return PostRule
                 .builder()
                 .anonymous(false)
-                .fileAttached(true)
-                .maxFileSizeInMegaByte(10)
                 .thumbUp(true)
                 .build();
     }

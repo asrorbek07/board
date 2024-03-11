@@ -5,5 +5,10 @@
 */
 package io.vizend.board.aggregate.post.store;
 
+import io.vizend.board.aggregate.post.domain.entity.Reply;
+
+import java.util.List;
+
 public interface ReplyOptionStore {
+    List<Reply> retrieveAllByCommentId(String commentId);
 }

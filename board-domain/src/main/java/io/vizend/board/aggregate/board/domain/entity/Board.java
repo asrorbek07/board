@@ -34,16 +34,17 @@ public class Board extends StageEntity {
 
     public Board(BoardCdo boardCdo) {
         //
-        super(boardCdo.genId(StageContext.get().getStageId()), boardCdo.getRequesterKey());
+        super(boardCdo.genId(), boardCdo.getRequesterKey());
         BeanUtils.copyProperties(boardCdo, this);
         setStageId(StageContext.get().getStageId());
         this.postSequence = 1L;
     }
 
-    public static String genId(String stageId, long sequence) {
+    public static String genId(String stageId,BoardType boardType, long sequence) {
         //
-        return String.format("%s-%d",
+        return String.format("%s-%s-%d",
                 stageId,
+                boardType,
                 sequence
         );
     }

@@ -15,6 +15,7 @@ public class CommentCdo extends CreationDataObject {
     //
     private String text;
     private String displayName;
+    private boolean accepted;
     private String postId;
 
     public static CommentCdo fromJson(String json) {
@@ -29,6 +30,7 @@ public class CommentCdo extends CreationDataObject {
                 .text("This is my sample comment.")
                 .displayName(StageContext.get().getDisplayName())
                 .postId(PostCdo.sample().genId())
+                .accepted(true)
                 .build();
     }
 

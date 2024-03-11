@@ -5,9 +5,14 @@
 */
 package io.vizend.board.aggregate.post.store.mongo.repository;
 
+import io.vizend.board.aggregate.post.domain.entity.Reply;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import io.vizend.board.aggregate.post.store.mongo.odm.ReplyDoc;
 
+import java.util.List;
+
 public interface ReplyMongoRepository extends MongoRepository<ReplyDoc, String> {
-    /* Gen by Vizend Studio v5.1.0 */
+    //
+
+    List<ReplyDoc> findAllByCommentId(String commentId);
 }

@@ -5,6 +5,8 @@
 */
 package io.vizend.board.aggregate.board.domain.logic;
 
+import io.vizend.accent.domain.type.Offset;
+import io.vizend.board.aggregate.board.domain.entity.vo.BoardType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import io.vizend.board.aggregate.board.store.BoardStore;
@@ -74,6 +76,7 @@ public class BoardLogic {
     }
 
     public void modifyBoard(Board board) {
+
         /* Gen by Vizend Studio v5.1.0 */
         Board oldBoard = findBoard(board.getId());
         NameValueList nameValues = Entities.getModifiedNameValues(oldBoard, board);
@@ -110,5 +113,15 @@ public class BoardLogic {
                 boardStore.delete(boardEvent.getBoardId());
                 break;
         }
+    }
+
+    public List<Board> findBoardsByType(BoardType boardType) {
+        //
+        return boardOptionStore.retrieveAllByBoardType(boardType);
+    }
+
+    public List<Board> findBoardsByOffset(Offset offset) {
+        //
+        return null;
     }
 }
