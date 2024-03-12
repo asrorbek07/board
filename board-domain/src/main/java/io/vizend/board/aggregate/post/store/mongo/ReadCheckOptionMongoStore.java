@@ -5,6 +5,9 @@
 */
 package io.vizend.board.aggregate.post.store.mongo;
 
+import io.vizend.accent.domain.type.IdName;
+import io.vizend.board.aggregate.post.domain.entity.ReadCheck;
+import io.vizend.board.aggregate.post.store.mongo.odm.ReadCheckDoc;
 import org.springframework.stereotype.Repository;
 import io.vizend.board.aggregate.post.store.ReadCheckOptionStore;
 import io.vizend.board.aggregate.post.store.mongo.repository.ReadCheckMongoRepository;
@@ -12,6 +15,9 @@ import org.springframework.data.domain.Pageable;
 import io.vizend.accent.domain.type.Offset;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+
+import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ReadCheckOptionMongoStore implements ReadCheckOptionStore {
@@ -30,5 +36,20 @@ public class ReadCheckOptionMongoStore implements ReadCheckOptionStore {
         } else {
             return PageRequest.of(offset.page(), offset.limit());
         }
+    }
+
+    @Override
+    public ReadCheck findByPostIdAndReader(String postId, IdName reader) {
+        ReadCheckDoc readCheckDoc = readCheckMongoRepository.findByPostIdAndReaderIdAndReaderName(postId, reader.getId(), reader.getName()).orElse(null);
+        if (readCheckDoc != null) {
+            return readCheckDoc.toDomain();
+        }
+        return null;
+    }
+
+    @Override
+    public List<ReadCheck> retrieveAllByPostId(String postId) {
+        List<ReadCheckDoc> readCheckDocs = readCheckMongoRepository.findAllByPostId(postId);
+        return ReadCheckDoc.toDomains(readCheckDocs);
     }
 }

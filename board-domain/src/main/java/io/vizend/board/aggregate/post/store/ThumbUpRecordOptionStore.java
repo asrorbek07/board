@@ -5,5 +5,10 @@
 */
 package io.vizend.board.aggregate.post.store;
 
+import io.vizend.board.aggregate.post.domain.entity.ThumbUpRecord;
+
+import java.util.List;
+
 public interface ThumbUpRecordOptionStore {
+    List<ThumbUpRecord> retrieveAllBySentenceId(String sentenceId);
 }

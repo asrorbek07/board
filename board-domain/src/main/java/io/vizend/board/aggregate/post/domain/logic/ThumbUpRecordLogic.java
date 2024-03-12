@@ -23,7 +23,7 @@ import io.vizend.accent.util.entity.Entities;
 @Service
 @Transactional
 public class ThumbUpRecordLogic {
-    /* Gen by Vizend Studio v5.1.0 */
+    //
     private final ThumbUpRecordStore thumbUpRecordStore;
     private final ThumbUpRecordOptionStore thumbUpRecordOptionStore;
     private final EventProxy eventProxy;
@@ -110,5 +110,10 @@ public class ThumbUpRecordLogic {
                 thumbUpRecordStore.delete(thumbUpRecordEvent.getThumbUpRecordId());
                 break;
         }
+    }
+
+    public List<ThumbUpRecord> findAllBySentenceId(String sentenceId) {
+        //
+        return thumbUpRecordOptionStore.retrieveAllBySentenceId(sentenceId);
     }
 }

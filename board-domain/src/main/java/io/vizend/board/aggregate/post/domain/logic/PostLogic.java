@@ -117,4 +117,9 @@ public class PostLogic {
 
         return postOptionStore.retrieveAllByBoardId(boardId);
     }
+
+    public boolean existsPostByTitle(String title) {
+
+        return postOptionStore.existsByTitle(title);
+    }
 }

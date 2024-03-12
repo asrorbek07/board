@@ -5,6 +5,7 @@
 */
 package io.vizend.board.aggregate.post.domain.logic;
 
+import io.vizend.accent.domain.type.IdName;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import io.vizend.board.aggregate.post.store.ReadCheckStore;
@@ -110,5 +111,15 @@ public class ReadCheckLogic {
                 readCheckStore.delete(readCheckEvent.getReadCheckId());
                 break;
         }
+    }
+
+    public ReadCheck findReadCheckByPostIdAndReader(String postId, IdName reader) {
+        //
+        return readCheckOptionStore.findByPostIdAndReader(postId,reader);
+    }
+
+    public List<ReadCheck> findReadChecks(String postId) {
+        //
+        return readCheckOptionStore.retrieveAllByPostId(postId);
     }
 }

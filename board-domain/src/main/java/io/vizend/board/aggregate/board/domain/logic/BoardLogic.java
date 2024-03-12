@@ -43,6 +43,7 @@ public class BoardLogic {
         if (boardCdo.hasAdditionalAttributes()) {
             board.modify(boardCdo.getAdditionalAttributes());
         }
+
         if (boardStore.exists(board.getId())) {
             throw new IllegalArgumentException("board already exists. " + board.getId());
         }
@@ -96,6 +97,11 @@ public class BoardLogic {
     public boolean existsBoard(String boardId) {
         /* Gen by Vizend Studio v5.1.0 */
         return boardStore.exists(boardId);
+    }
+
+    public boolean existsBoardByTitle(String title){
+        //
+        return boardOptionStore.existsByTitle(title);
     }
 
     public void handleEventForProjection(BoardEvent boardEvent) {

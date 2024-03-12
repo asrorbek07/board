@@ -13,4 +13,5 @@ import java.util.List;
 public interface PostMongoRepository extends MongoRepository<PostDoc, String> {
     //
     List<PostDoc> findAllByBoardId(String boardId);
+    boolean existsByTitle(String title);
 }

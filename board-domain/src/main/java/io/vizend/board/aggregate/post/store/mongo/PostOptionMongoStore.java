@@ -43,4 +43,9 @@ public class PostOptionMongoStore implements PostOptionStore {
         return postDocs.stream().map(PostDoc::toDomain).collect(Collectors.toList());
 
     }
+
+    @Override
+    public boolean existsByTitle(String title) {
+        return postMongoRepository.existsByTitle(title);
+    }
 }

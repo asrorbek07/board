@@ -51,7 +51,7 @@ public class ThumbUpRecordCdo extends CreationDataObject {
     @Override
     public String genId() {
         //
-        return ThumbUpRecord.genId();
+        return ThumbUpRecord.genId(sentenceId,reader);
     }
 
     @Override

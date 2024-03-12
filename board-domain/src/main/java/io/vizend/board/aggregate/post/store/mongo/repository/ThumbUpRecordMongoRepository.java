@@ -8,6 +8,9 @@ package io.vizend.board.aggregate.post.store.mongo.repository;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import io.vizend.board.aggregate.post.store.mongo.odm.ThumbUpRecordDoc;
 
+import java.util.List;
+
 public interface ThumbUpRecordMongoRepository extends MongoRepository<ThumbUpRecordDoc, String> {
-    /* Gen by Vizend Studio v5.1.0 */
+    //
+    List<ThumbUpRecordDoc> findAllBySentenceId(String sentenceId);
 }

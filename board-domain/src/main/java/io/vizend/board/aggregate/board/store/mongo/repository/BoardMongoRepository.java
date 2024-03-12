@@ -15,6 +15,5 @@ public interface BoardMongoRepository extends MongoRepository<BoardDoc, String> 
     //
 
     List<BoardDoc> findAllByBoardType(BoardType boardType);
-//    boolean existsByBoardTypeAndId(BoardType boardType, String boardId);
-//    BoardDoc findByBoardTypeAndId(BoardType boardType, String boardId);
+    boolean existsByTitle(String title);
 }

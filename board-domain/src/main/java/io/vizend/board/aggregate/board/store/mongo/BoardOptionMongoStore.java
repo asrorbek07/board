@@ -46,4 +46,9 @@ public class BoardOptionMongoStore implements BoardOptionStore {
         return boardDocs.stream().map(BoardDoc::toDomain).collect(Collectors.toList());
     }
 
+    @Override
+    public boolean existsByTitle(String title) {
+        return boardMongoRepository.existsByTitle(title);
+    }
+
 }

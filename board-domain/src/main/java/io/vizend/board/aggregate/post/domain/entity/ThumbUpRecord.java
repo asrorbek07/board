@@ -45,10 +45,12 @@ public class ThumbUpRecord extends StageEntity implements DomainAggregate {
         BeanUtils.copyProperties(thumbUpRecordCdo, this);
     }
 
-    public static String genId() {
+    public static String genId(String sentenceId, IdName reader) {
         //
-        return UUID.randomUUID().toString();
-    }
+        return String.format("%s-%s",
+                sentenceId,
+                reader.getName()
+        );    }
 
     public static ThumbUpRecord fromJson(String json) {
         //

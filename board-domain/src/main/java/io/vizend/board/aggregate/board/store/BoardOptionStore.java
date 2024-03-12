@@ -13,4 +13,5 @@ import java.util.List;
 public interface BoardOptionStore {
     List<Board> retrieveAllByBoardType(BoardType boardType);
 
+    boolean existsByTitle(String title);
 }

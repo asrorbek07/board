@@ -27,12 +27,16 @@ public class BoardAction {
 
     public String registerBoard(BoardCdo boardCdo, BoardType boardType) {
         //
-        BoardSequence faqBoardSequence = getOrCreateBoardSequence(boardType);
-        long sequence = faqBoardSequence.getSequence();
-        boardCdo.setSequence(sequence);
-        faqBoardSequence.setSequence(sequence + 1);
-        boardSequenceLogic.modifyBoardSequence(faqBoardSequence);
-        return boardLogic.registerBoard(boardCdo);
+        if (boardLogic.existsBoardByTitle(boardCdo.getTitle())) {
+            throw new IllegalArgumentException("board already exists. " + boardCdo.getTitle());
+        }else {
+            BoardSequence faqBoardSequence = getOrCreateBoardSequence(boardType);
+            long sequence = faqBoardSequence.getSequence();
+            boardCdo.setSequence(sequence);
+            faqBoardSequence.setSequence(sequence + 1);
+            boardSequenceLogic.modifyBoardSequence(faqBoardSequence);
+            return boardLogic.registerBoard(boardCdo);
+        }
     }
 
     public void modifyBoard(String boardId, NameValueList nameValueList) {

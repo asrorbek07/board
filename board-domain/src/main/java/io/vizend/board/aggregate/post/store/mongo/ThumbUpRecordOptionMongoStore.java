@@ -5,6 +5,8 @@
 */
 package io.vizend.board.aggregate.post.store.mongo;
 
+import io.vizend.board.aggregate.post.domain.entity.ThumbUpRecord;
+import io.vizend.board.aggregate.post.store.mongo.odm.ThumbUpRecordDoc;
 import org.springframework.stereotype.Repository;
 import io.vizend.board.aggregate.post.store.ThumbUpRecordOptionStore;
 import io.vizend.board.aggregate.post.store.mongo.repository.ThumbUpRecordMongoRepository;
@@ -12,6 +14,8 @@ import org.springframework.data.domain.Pageable;
 import io.vizend.accent.domain.type.Offset;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+
+import java.util.List;
 
 @Repository
 public class ThumbUpRecordOptionMongoStore implements ThumbUpRecordOptionStore {
@@ -30,5 +34,12 @@ public class ThumbUpRecordOptionMongoStore implements ThumbUpRecordOptionStore {
         } else {
             return PageRequest.of(offset.page(), offset.limit());
         }
+    }
+
+    @Override
+    public List<ThumbUpRecord> retrieveAllBySentenceId(String sentenceId) {
+        //
+        List<ThumbUpRecordDoc> thumbUpRecordDocs = thumbUpRecordMongoRepository.findAllBySentenceId(sentenceId);
+        return ThumbUpRecordDoc.toDomains(thumbUpRecordDocs);
     }
 }
