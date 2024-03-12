@@ -33,19 +33,18 @@ public class FaqBoardFlowResource implements FaqBoardFlowFacade {
     @Override
     @PostMapping("/modify-faq-board/command")
     public CommandResponse modifyFaqBoard(@RequestBody ModifyFaqBoardCommand command) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         command.validate();
         String boardId = command.getBoardId();
         NameValueList nameValueList = command.getNameValueList();
-        String entityId = faqBoardFlow.modifyFaqBoard(boardId, nameValueList);
-        command.setResponse(entityId);
+        faqBoardFlow.modifyFaqBoard(boardId, nameValueList);
         return command.getResponse();
     }
 
     @Override
     @PostMapping("/register-faq-board/command")
     public CommandResponse registerFaqBoard(@RequestBody RegisterFaqBoardCommand command) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         command.validate();
         FaqBoardCdo faqBoardCdo = command.genFaqBoardCdo();
         String entityId = faqBoardFlow.registerFaqBoard(faqBoardCdo.genBoardCdo());
@@ -56,11 +55,10 @@ public class FaqBoardFlowResource implements FaqBoardFlowFacade {
     @Override
     @PostMapping("/remove-faq-board/command")
     public CommandResponse removeFaqBoard(@RequestBody RemoveFaqBoardCommand command) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         command.validate();
         String boardId = command.getBoardId();
-        String entityId = faqBoardFlow.removeFaqBoard(boardId);
-        command.setResponse(entityId);
+        faqBoardFlow.removeFaqBoard(boardId);
         return command.getResponse();
     }
 }

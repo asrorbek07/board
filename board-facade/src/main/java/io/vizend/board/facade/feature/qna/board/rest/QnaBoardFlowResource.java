@@ -27,12 +27,13 @@ import io.vizend.accent.domain.type.NameValueList;
 @RequestMapping("/feature/qan/board")
 @RequiredArgsConstructor
 public class QnaBoardFlowResource implements QnaBoardFlowFacade {
+    //
     private final QnaBoardFlow qnaBoardFlow;
 
     @Override
     @PostMapping("/register-qan-board/command")
     public CommandResponse registerQanBoard(@RequestBody RegisterQnaBoardCommand command) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         QnaBoardCdo qnaBoardCdo = command.genQanBoardCdo();
         String entityId = qnaBoardFlow.registerQanBoard(qnaBoardCdo.genBoardCdo());
         command.setResponse(entityId);
@@ -42,23 +43,21 @@ public class QnaBoardFlowResource implements QnaBoardFlowFacade {
     @Override
     @PostMapping("/modify-qan-board/command")
     public CommandResponse modifyQanBoard(@RequestBody ModifyQnaBoardCommand command) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         command.validate();
         String boardId = command.getBoardId();
         NameValueList nameValueList = command.getNameValueList();
-        String entityId = qnaBoardFlow.modifyQanBoard(boardId, nameValueList);
-        command.setResponse(entityId);
+        qnaBoardFlow.modifyQanBoard(boardId, nameValueList);
         return command.getResponse();
     }
 
     @Override
     @PostMapping("/remove-qan-board/command")
     public CommandResponse removeQanBoard(@RequestBody RemoveQnaBoardCommand command) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         command.validate();
         String boardId = command.getBoardId();
-        String entityId = qnaBoardFlow.removeQanBoard(boardId);
-        command.setResponse(entityId);
+        qnaBoardFlow.removeQanBoard(boardId);
         return command.getResponse();
     }
 }

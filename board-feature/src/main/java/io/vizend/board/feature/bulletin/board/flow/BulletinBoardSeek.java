@@ -11,7 +11,7 @@
 package io.vizend.board.feature.bulletin.board.flow;
 
 import io.vizend.board.aggregate.board.domain.entity.vo.BoardType;
-import io.vizend.board.aggregate.board.domain.logic.BoardLogic;
+import io.vizend.board.feature.action.BoardAction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -22,15 +22,16 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor
 public class BulletinBoardSeek {
-    private final BoardLogic boardLogic; // 
+    //
+    private final BoardAction boardAction;
 
     public Board findBulletinBoard(String boardId) {
         // 
-        return boardLogic.findBoard(boardId);
+        return boardAction.findBoard(boardId);
     }
 
     public List<Board> findBulletinBoards() {
         //
-        return boardLogic.findBoardsByType(BoardType.BulletinBoard);
+        return boardAction.findBoards(BoardType.BulletinBoard);
     }
 }

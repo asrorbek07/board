@@ -16,13 +16,12 @@
 package io.vizend.board.feature.qna.board.flow;
 
 import io.vizend.accent.domain.type.NameValueList;
-import io.vizend.board.aggregate.board.domain.entity.BoardSequence;
 import io.vizend.board.aggregate.board.domain.entity.sdo.BoardCdo;
-import io.vizend.board.aggregate.board.domain.entity.sdo.BoardSequenceCdo;
 import io.vizend.board.aggregate.board.domain.entity.vo.BoardType;
-import io.vizend.board.aggregate.board.domain.logic.BoardLogic;
-import io.vizend.board.aggregate.board.domain.logic.BoardSequenceLogic;
-import io.vizend.board.feature.qna.board.domain.sdo.QnaBoardCdo;
+import io.vizend.board.aggregate.post.domain.entity.Post;
+import io.vizend.board.feature.action.BoardAction;
+import io.vizend.board.feature.action.CommentAction;
+import io.vizend.board.feature.action.PostAction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -31,39 +30,27 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 @RequiredArgsConstructor
 public class QnaBoardFlow {
-    private final BoardSequenceLogic boardSequenceLogic;
-    private final BoardLogic boardLogic;
+    //
+    private final BoardAction boardAction;
+    private final PostAction postAction;
+    private final CommentAction commentAction;
 
     public String registerQanBoard(BoardCdo boardCdo) {
         // 
-        BoardSequence boardSequence = getOrCreateBoardSequence();
-        long sequence = boardSequence.getSequence();
-        boardCdo.setSequence(sequence);
-        boardSequence.setSequence(sequence + 1);
-        boardSequenceLogic.modifyBoardSequence(boardSequence);
-        return boardLogic.registerBoard(boardCdo);
+        return boardAction.registerBoard(boardCdo, BoardType.QNABoard);
     }
 
-    private BoardSequence getOrCreateBoardSequence() {
+    public void modifyQanBoard(String boardId, NameValueList nameValueList) {
         // 
-        BoardSequence faqBoardSequence = boardSequenceLogic.findByEntityName(BoardType.QNABoard.toString());
-        if (faqBoardSequence == null) {
-            BoardSequenceCdo boardSequenceCdo = BoardSequenceCdo.builder().entityName(BoardType.QNABoard.toString()).build();
-            String id = boardSequenceLogic.registerBoardSequence(boardSequenceCdo);
-            faqBoardSequence = boardSequenceLogic.findByEntityName(BoardType.QNABoard.toString());
+        boardAction.modifyBoard(boardId, nameValueList);
+    }
+
+    public void removeQanBoard(String boardId) {
+        //
+        for (Post post : postAction.findPosts(boardId)) {
+            commentAction.removeCommentsByPostId(post.getId());
+            postAction.removePost(post.getId());
         }
-        return faqBoardSequence;
-    }
-
-    public String modifyQanBoard(String boardId, NameValueList nameValueList) {
-        // 
-        boardLogic.modifyBoard(boardId, nameValueList);
-        return boardId;
-    }
-
-    public String removeQanBoard(String boardId) {
-        // 
-        boardLogic.removeBoard(boardId);
-        return boardId;
+        boardAction.removeBoard(boardId);
     }
 }

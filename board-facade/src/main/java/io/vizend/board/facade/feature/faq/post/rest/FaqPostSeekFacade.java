@@ -19,5 +19,5 @@ import io.vizend.board.facade.feature.faq.post.query.FindFaqPostsByBoardIdQuery;
 public interface FaqPostSeekFacade {
     /* Gen by Vizend Studio v5.1.0 */
     QueryResponse<Post> findFaqPost(FindFaqPostQuery query);
-    QueryResponse<List<Post>> findFaqPostsByBoardId(FindFaqPostsByBoardIdQuery query);
+    QueryResponse<List<Post>> findFaqPosts(FindFaqPostsByBoardIdQuery query);
 }

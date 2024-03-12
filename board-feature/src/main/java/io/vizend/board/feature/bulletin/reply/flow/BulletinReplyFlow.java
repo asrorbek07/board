@@ -17,39 +17,30 @@ package io.vizend.board.feature.bulletin.reply.flow;
 
 import io.vizend.accent.domain.type.NameValueList;
 import io.vizend.board.aggregate.post.domain.entity.sdo.ReplyCdo;
-import io.vizend.board.aggregate.post.domain.logic.CommentLogic;
-import io.vizend.board.aggregate.post.domain.logic.ReplyLogic;
+import io.vizend.board.feature.action.ReplyAction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
-import java.util.NoSuchElementException;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class BulletinReplyFlow {
-    private final CommentLogic commentLogic; // 
-    private final ReplyLogic replyLogic;
+    //
+    private final ReplyAction replyAction;
 
     public String registerBulletinReply(ReplyCdo replyCdo) {
         // 
-        String commentId = replyCdo.getCommentId();
-        if (commentLogic.existsComment(commentId)) {
-            return replyLogic.registerReply(replyCdo);
-        } else {
-            throw new NoSuchElementException("Comment id: " + commentId);
-        }
+        return replyAction.registerReply(replyCdo);
     }
 
-    public String modifyBulletinReply(String replyId, NameValueList nameValueList) {
+    public void modifyBulletinReply(String replyId, NameValueList nameValueList) {
         // 
-        replyLogic.modifyReply(replyId, nameValueList);
-        return replyId;
+        replyAction.modifyReply(replyId, nameValueList);
     }
 
-    public String removeBulletinReply(String replyId) {
+    public void removeBulletinReply(String replyId) {
         //
-        replyLogic.removeReply(replyId);
-        return replyId;
+        replyAction.removeReply(replyId);
     }
 }

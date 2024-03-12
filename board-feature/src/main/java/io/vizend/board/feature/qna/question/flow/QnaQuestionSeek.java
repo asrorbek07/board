@@ -12,6 +12,7 @@ package io.vizend.board.feature.qna.question.flow;
 
 import io.vizend.board.aggregate.board.domain.logic.BoardLogic;
 import io.vizend.board.aggregate.post.domain.logic.PostLogic;
+import io.vizend.board.feature.action.PostAction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -24,20 +25,15 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class QnaQuestionSeek {
     //
-    private final PostLogic postLogic;
-    private final BoardLogic boardLogic;
+    private final PostAction postAction;
 
     public Post findQnaQuestion(String questionId) {
         // 
-        return postLogic.findPost(questionId);
+        return postAction.findPost(questionId);
     }
 
     public List<Post> findQnaQuestions(String boardId) {
         //
-        if (boardLogic.existsBoard(boardId)) {
-            return postLogic.findPostsByBoardId(boardId);
-        }else {
-            throw new NoSuchElementException("Board id: " + boardId);
-        }
+        return postAction.findPosts(boardId);
     }
 }

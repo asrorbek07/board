@@ -17,7 +17,6 @@ import lombok.*;
 public class QnaQuestionCdo extends CreationDataObject {
     //
     private String title;
-    private String displayName;
     private String content;
     private String boardId;
     private ReportOption reportOption;
@@ -34,7 +33,6 @@ public class QnaQuestionCdo extends CreationDataObject {
         return QnaQuestionCdo
                 .builder()
                 .title(postCdoSample.getTitle())
-                .displayName(postCdoSample.getDisplayName())
                 .content(postCdoSample.getContent())
                 .boardId(postCdoSample.getBoardId())
                 .reportOption(postCdoSample.getReportOption())

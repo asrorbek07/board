@@ -48,19 +48,17 @@ public class QnaQuestionFlowResource implements QnaQuestionFlowFacade {
         command.validate();
         String questionId = command.getQuestionId();
         NameValueList nameValueList = command.getNameValueList();
-        String entityId = qnaQuestionFlow.modifyQnaQuestion(questionId, nameValueList);
-        command.setResponse(entityId);
+        qnaQuestionFlow.modifyQnaQuestion(questionId, nameValueList);
         return command.getResponse();
     }
 
     @Override
     @PostMapping("/remove-qna-question/command")
     public CommandResponse removeQnaQuestion(@RequestBody RemoveQnaQuestionCommand command) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         command.validate();
         String questionId = command.getQuestionId();
-        String entityId = qnaQuestionFlow.removeQnaQuestion(questionId);
-        command.setResponse(entityId);
+        qnaQuestionFlow.removeQnaQuestion(questionId);
         return command.getResponse();
     }
 }

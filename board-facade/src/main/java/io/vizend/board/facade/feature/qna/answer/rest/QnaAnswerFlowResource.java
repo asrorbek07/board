@@ -27,12 +27,13 @@ import io.vizend.board.facade.feature.qna.answer.command.RemoveQnaAnswerCommand;
 @RequestMapping("/feature/qna/answer")
 @RequiredArgsConstructor
 public class QnaAnswerFlowResource implements QnaAnswerFlowFacade {
+    //
     private final QnaAnswerFlow qnaAnswerFlow;
 
     @Override
     @PostMapping("/register-qna-answer/command")
     public CommandResponse registerQnaAnswer(@RequestBody RegisterQnaAnswerCommand command) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         QnaAnswerCdo qnaAnswerCdo = command.genQnaAnswerCdo();
         String entityId = qnaAnswerFlow.registerQnaAnswer(qnaAnswerCdo.genCommentCdo());
         command.setResponse(entityId);
@@ -42,23 +43,21 @@ public class QnaAnswerFlowResource implements QnaAnswerFlowFacade {
     @Override
     @PostMapping("/modify-qna-answer/command")
     public CommandResponse modifyQnaAnswer(@RequestBody ModifyQnaAnswerCommand command) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         command.validate();
         String answerId = command.getAnswerId();
         NameValueList nameValueList = command.getNameValueList();
-        String entityId = qnaAnswerFlow.modifyQnaAnswer(answerId, nameValueList);
-        command.setResponse(entityId);
+        qnaAnswerFlow.modifyQnaAnswer(answerId, nameValueList);
         return command.getResponse();
     }
 
     @Override
     @PostMapping("/remove-qna-answer/command")
     public CommandResponse removeQnaAnswer(@RequestBody RemoveQnaAnswerCommand command) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         command.validate();
         String answerId = command.getAnswerId();
-        String entityId = qnaAnswerFlow.removeQnaAnswer(answerId);
-        command.setResponse(entityId);
+        qnaAnswerFlow.removeQnaAnswer(answerId);
         return command.getResponse();
     }
 }

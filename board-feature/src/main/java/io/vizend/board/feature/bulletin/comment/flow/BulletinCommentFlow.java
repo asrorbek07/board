@@ -17,40 +17,32 @@ package io.vizend.board.feature.bulletin.comment.flow;
 
 import io.vizend.accent.domain.type.NameValueList;
 import io.vizend.board.aggregate.post.domain.entity.sdo.CommentCdo;
-import io.vizend.board.aggregate.post.domain.logic.CommentLogic;
-import io.vizend.board.aggregate.post.domain.logic.PostLogic;
-import io.vizend.board.feature.bulletin.comment.domain.sdo.BulletinCommentCdo;
+import io.vizend.board.feature.action.CommentAction;
+import io.vizend.board.feature.action.ReplyAction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
-import java.util.NoSuchElementException;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class BulletinCommentFlow {
-    private final PostLogic postLogic; // 
-    private final CommentLogic commentLogic;
+    //
+    private final CommentAction commentAction;
+    private final ReplyAction replyAction;
 
     public String registerBulletinComment(CommentCdo commentCdo) {
         // 
-        String postId = commentCdo.getPostId();
-        if (postLogic.existsPost(postId)) {
-            return commentLogic.registerComment(commentCdo);
-        } else {
-            throw new NoSuchElementException("Post id: " + postId);
-        }
+        return commentAction.registerComment(commentCdo);
     }
 
-    public String modifyBulletinComment(String commentId, NameValueList nameValueList) {
+    public void modifyBulletinComment(String commentId, NameValueList nameValueList) {
         // 
-        commentLogic.modifyComment(commentId, nameValueList);
-        return commentId;
+        commentAction.modifyComment(commentId, nameValueList);
     }
 
-    public String removeBulletinComment(String commentId) {
+    public void removeBulletinComment(String commentId) {
         //
-        commentLogic.removeComment(commentId);
-        return commentId;
+        commentAction.removeComment(commentId);
     }
 }

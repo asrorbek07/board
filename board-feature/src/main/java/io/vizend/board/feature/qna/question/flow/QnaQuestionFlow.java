@@ -16,10 +16,9 @@
 package io.vizend.board.feature.qna.question.flow;
 
 import io.vizend.accent.domain.type.NameValueList;
-import io.vizend.board.aggregate.board.domain.entity.Board;
-import io.vizend.board.aggregate.board.domain.logic.BoardLogic;
 import io.vizend.board.aggregate.post.domain.entity.sdo.PostCdo;
-import io.vizend.board.aggregate.post.domain.logic.PostLogic;
+import io.vizend.board.feature.action.CommentAction;
+import io.vizend.board.feature.action.PostAction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -28,32 +27,23 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 @RequiredArgsConstructor
 public class QnaQuestionFlow {
-    private final BoardLogic boardLogic;
-    private final PostLogic postLogic;
+    //
+    private final PostAction postAction;
+    private final CommentAction commentAction;
 
     public String registerQnaQuestion(PostCdo postCdo) {
         // 
-        String boardId = postCdo.getBoardId();
-        Board board = boardLogic.findBoard(boardId);
-        long postSequence = board.getPostSequence();
-        postCdo.setSequence(postSequence);
-        if (postCdo.getCommentRule() == null) {
-            postCdo.setCommentRule(board.getBoardPolicy().getCommentRule());
-        }
-        String postId = postLogic.registerPost(postCdo);
-        boardLogic.modifyBoard(board.getId(), NameValueList.of("postSequence", String.valueOf(postSequence + 1)));
-        return postId;
+        return postAction.registerPost(postCdo);
     }
 
-    public String modifyQnaQuestion(String questionId, NameValueList nameValueList) {
+    public void modifyQnaQuestion(String questionId, NameValueList nameValueList) {
         // 
-        postLogic.modifyPost(questionId, nameValueList);
-        return questionId;
+        postAction.modifyPost(questionId, nameValueList);
     }
 
-    public String removeQnaQuestion(String questionId) {
+    public void removeQnaQuestion(String questionId) {
         //
-        postLogic.removePost(questionId);
-        return questionId;
+        commentAction.removeCommentsByPostId(questionId);
+        postAction.removePost(questionId);
     }
 }

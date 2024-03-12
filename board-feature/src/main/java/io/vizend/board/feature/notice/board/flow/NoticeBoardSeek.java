@@ -13,7 +13,7 @@ package io.vizend.board.feature.notice.board.flow;
 
 import io.vizend.board.aggregate.board.domain.entity.Board;
 import io.vizend.board.aggregate.board.domain.entity.vo.BoardType;
-import io.vizend.board.aggregate.board.domain.logic.BoardLogic;
+import io.vizend.board.feature.action.BoardAction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -24,15 +24,15 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor
 public class NoticeBoardSeek {
-    private final BoardLogic boardLogic; // 
+    private final BoardAction boardAction;
 
     public Board findNoticeBoard(String boardId) {
         // 
-        return boardLogic.findBoard(boardId);
+        return boardAction.findBoard(boardId);
     }
 
     public List<Board> findNoticeBoards() {
         //
-        return boardLogic.findBoardsByType(BoardType.NoticeBoard);
+        return boardAction.findBoards(BoardType.NoticeBoard);
     }
 }

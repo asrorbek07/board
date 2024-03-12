@@ -17,7 +17,7 @@ package io.vizend.board.feature.faq.board.flow;
 
 import io.vizend.accent.domain.type.Offset;
 import io.vizend.board.aggregate.board.domain.entity.vo.BoardType;
-import io.vizend.board.aggregate.board.domain.logic.BoardLogic;
+import io.vizend.board.feature.action.BoardAction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -29,20 +29,20 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FaqBoardSeek {
     //
-    private final BoardLogic boardLogic;
+    private final BoardAction boardAction;
 
     public Board findFaqBoard(String boardId) {
         // 
-        return boardLogic.findBoard( boardId);
+        return boardAction.findBoard( boardId);
     }
 
     public List<Board> findFaqBoards() {
         // 
-        return boardLogic.findBoardsByType(BoardType.FAQBoard);
+        return boardAction.findBoards(BoardType.FAQBoard);
     }
 
     public List<Board> findFaqBoardByOffset(Offset offset) {
         //
-        return boardLogic.findBoardsByOffset(offset);
+        return boardAction.findBoardByOffset(offset);
     }
 }

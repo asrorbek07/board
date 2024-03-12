@@ -27,12 +27,13 @@ import io.vizend.board.facade.feature.bulletin.comment.command.RemoveBulletinCom
 @RequestMapping("/feature/bulletin/comment")
 @RequiredArgsConstructor
 public class BulletinCommentFlowResource implements BulletinCommentFlowFacade {
+    //
     private final BulletinCommentFlow bulletinCommentFlow;
 
     @Override
     @PostMapping("/register-bulletin-comment/command")
     public CommandResponse registerBulletinComment(@RequestBody RegisterBulletinCommentCommand command) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         command.validate();
         BulletinCommentCdo bulletinCommentCdo = command.genBulletinCommentCdo();
         String entityId = bulletinCommentFlow.registerBulletinComment(bulletinCommentCdo.genCommentCdo());
@@ -43,12 +44,11 @@ public class BulletinCommentFlowResource implements BulletinCommentFlowFacade {
     @Override
     @PostMapping("/modify-bulletin-comment/command")
     public CommandResponse modifyBulletinComment(@RequestBody ModifyBulletinCommentCommand command) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         command.validate();
         String commentId = command.getCommentId();
         NameValueList nameValueList = command.getNameValueList();
-        String entityId = bulletinCommentFlow.modifyBulletinComment(commentId, nameValueList);
-        command.setResponse(entityId);
+        bulletinCommentFlow.modifyBulletinComment(commentId, nameValueList);
         return command.getResponse();
     }
 
@@ -58,8 +58,7 @@ public class BulletinCommentFlowResource implements BulletinCommentFlowFacade {
         /* Gen by Vizend Studio v5.1.0 */
         command.validate();
         String commentId = command.getCommentId();
-        String entityId = bulletinCommentFlow.removeBulletinComment(commentId);
-        command.setResponse(entityId);
+        bulletinCommentFlow.removeBulletinComment(commentId);
         return command.getResponse();
     }
 }

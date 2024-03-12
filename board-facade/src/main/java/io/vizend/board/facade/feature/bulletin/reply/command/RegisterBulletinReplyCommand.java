@@ -46,8 +46,8 @@ public class RegisterBulletinReplyCommand extends CommandRequest {
         //
         BulletinReplyCdo sample = BulletinReplyCdo.sample();
         return new RegisterBulletinReplyCommand(
-                sample().text,
-                sample().commentId
+                sample.getText(),
+                sample.getCommentId()
         );
     }
 

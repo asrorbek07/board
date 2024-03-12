@@ -42,11 +42,11 @@ public class FaqPostSeekResource implements FaqPostSeekFacade {
 
     @Override
     @PostMapping("/find-faq-posts-by-board-id/query")
-    public QueryResponse<List<Post>> findFaqPostsByBoardId(@RequestBody FindFaqPostsByBoardIdQuery query) {
-        /* Gen by Vizend Studio v5.1.0 */
+    public QueryResponse<List<Post>> findFaqPosts(@RequestBody FindFaqPostsByBoardIdQuery query) {
+        //
         query.validate();
         String boardId = query.getBoardId();
-        List<Post> response = faqPostSeek.findFaqPostsByBoardId(boardId);
+        List<Post> response = faqPostSeek.findFaqPosts(boardId);
         query.setResponse(response);
         return query.getResponse();
     }

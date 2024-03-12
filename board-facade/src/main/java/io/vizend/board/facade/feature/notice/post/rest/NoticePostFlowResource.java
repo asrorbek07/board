@@ -29,12 +29,13 @@ import io.vizend.board.facade.feature.notice.post.command.RemoveNoticePostComman
 @RequestMapping("/feature/notice/post")
 @RequiredArgsConstructor
 public class NoticePostFlowResource implements NoticePostFlowFacade {
+    //
     private final NoticePostFlow noticePostFlow;
 
     @Override
     @PostMapping("/register-notice-post/command")
     public CommandResponse registerNoticePost(@RequestBody RegisterNoticePostCommand command) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         NoticePostCdo noticePostCdo = command.genNoticePostCdo();
         String entityId = noticePostFlow.registerNoticePost(noticePostCdo.genPostCdo());
         command.setResponse(entityId);
@@ -44,23 +45,21 @@ public class NoticePostFlowResource implements NoticePostFlowFacade {
     @Override
     @PostMapping("/modify-notice-post/command")
     public CommandResponse modifyNoticePost(@RequestBody ModifyNoticePostCommand command) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         command.validate();
         String postId = command.getPostId();
         NameValueList nameValueList = command.getNameValueList();
-        String entityId = noticePostFlow.modifyNoticePost(postId, nameValueList);
-        command.setResponse(entityId);
+        noticePostFlow.modifyNoticePost(postId, nameValueList);
         return command.getResponse();
     }
 
     @Override
     @PostMapping("/remove-notice-post/command")
     public CommandResponse removeNoticePost(@RequestBody RemoveNoticePostCommand command) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         command.validate();
         String postId = command.getPostId();
-        String entityId = noticePostFlow.removeNoticePost(postId);
-        command.setResponse(entityId);
+        noticePostFlow.removeNoticePost(postId);
         return command.getResponse();
     }
 }

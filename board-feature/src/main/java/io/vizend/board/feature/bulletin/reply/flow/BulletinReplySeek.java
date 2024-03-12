@@ -10,34 +10,27 @@
 */
 package io.vizend.board.feature.bulletin.reply.flow;
 
-import io.vizend.board.aggregate.post.domain.logic.CommentLogic;
-import io.vizend.board.aggregate.post.domain.logic.ReplyLogic;
+import io.vizend.board.feature.action.ReplyAction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import io.vizend.board.aggregate.post.domain.entity.Reply;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class BulletinReplySeek {
-    private final ReplyLogic replyLogic; // 
-    private final CommentLogic commentLogic;
+    //
+    private final ReplyAction replyAction;
 
     public Reply findBulletinReply(String replyId) {
         // 
-        return replyLogic.findReply(replyId);
+        return replyAction.findReply(replyId);
     }
 
     public List<Reply> findBulletinReplies(String commentId) {
         //
-        if (commentLogic.existsComment(commentId)) {
-            return replyLogic.findReplyByCommentId(commentId);
-        }else {
-
-            throw new NoSuchElementException("Comment id: " + commentId);
-        }
+        return replyAction.findReplies(commentId);
     }
 }

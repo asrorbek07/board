@@ -29,12 +29,13 @@ import io.vizend.board.facade.feature.bulletin.post.command.RemoveBulletinPostCo
 @RequestMapping("/feature/bulletin/post")
 @RequiredArgsConstructor
 public class BulletinPostFlowResource implements BulletinPostFlowFacade {
+    //
     private final BulletinPostFlow bulletinPostFlow;
 
     @Override
     @PostMapping("/register-bulletin-post/command")
     public CommandResponse registerBulletinPost(@RequestBody RegisterBulletinPostCommand command) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         BulletinPostCdo bulletinPostCdo = command.genBulletinPostCdo();
         String entityId = bulletinPostFlow.registerBulletinPost(bulletinPostCdo.genPostCdo());
         command.setResponse(entityId);
@@ -44,23 +45,21 @@ public class BulletinPostFlowResource implements BulletinPostFlowFacade {
     @Override
     @PostMapping("/modify-bulletin-post/command")
     public CommandResponse modifyBulletinPost(@RequestBody ModifyBulletinPostCommand command) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         command.validate();
         String postId = command.getPostId();
         NameValueList nameValueList = command.getNameValueList();
-        String entityId = bulletinPostFlow.modifyBulletinPost(postId, nameValueList);
-        command.setResponse(entityId);
+        bulletinPostFlow.modifyBulletinPost(postId, nameValueList);
         return command.getResponse();
     }
 
     @Override
     @PostMapping("/remove-bulletin-post/command")
     public CommandResponse removeBulletinPost(@RequestBody RemoveBulletinPostCommand command) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         command.validate();
         String postId = command.getPostId();
-        String entityId = bulletinPostFlow.removeBulletinPost(postId);
-        command.setResponse(entityId);
+        bulletinPostFlow.removeBulletinPost(postId);
         return command.getResponse();
     }
 }

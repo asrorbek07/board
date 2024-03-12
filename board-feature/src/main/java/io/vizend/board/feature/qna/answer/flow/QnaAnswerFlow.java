@@ -17,40 +17,30 @@ package io.vizend.board.feature.qna.answer.flow;
 
 import io.vizend.accent.domain.type.NameValueList;
 import io.vizend.board.aggregate.post.domain.entity.sdo.CommentCdo;
-import io.vizend.board.aggregate.post.domain.logic.CommentLogic;
-import io.vizend.board.aggregate.post.domain.logic.PostLogic;
-import io.vizend.board.feature.qna.answer.domain.sdo.QnaAnswerCdo;
+import io.vizend.board.feature.action.CommentAction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
-import java.util.NoSuchElementException;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class QnaAnswerFlow {
-    private final PostLogic postLogic; // 
-    private final CommentLogic commentLogic;
+    //
+    private final CommentAction commentAction;
 
     public String registerQnaAnswer(CommentCdo commentCdo) {
         // 
-        String questionId = commentCdo.getPostId();
-        if (postLogic.existsPost(questionId)) {
-            return commentLogic.registerComment(commentCdo);
-        } else {
-            throw new NoSuchElementException("Post id: " + questionId);
-        }
+        return commentAction.registerComment(commentCdo);
     }
 
-    public String modifyQnaAnswer(String answerId, NameValueList nameValueList) {
+    public void modifyQnaAnswer(String answerId, NameValueList nameValueList) {
         // 
-        commentLogic.modifyComment(answerId, nameValueList);
-        return answerId;
+        commentAction.modifyComment(answerId, nameValueList);
     }
 
-    public String removeQnaAnswer(String answerId) {
+    public void removeQnaAnswer(String answerId) {
         //
-        commentLogic.removeComment(answerId);
-        return answerId;
+        commentAction.removeComment(answerId);
     }
 }

@@ -27,7 +27,6 @@ import org.springframework.util.Assert;
 public class RegisterNoticePostCommand extends CommandRequest {
     //
     private String title;
-    private String displayName;
     private String content;
     private String boardId;
     private ReportOption reportOption;
@@ -36,7 +35,6 @@ public class RegisterNoticePostCommand extends CommandRequest {
     public void validate() {
         //
         Assert.notNull(title,"title is required");
-        Assert.notNull(displayName,"displayName is required");
         Assert.notNull(content,"content is required");
         Assert.notNull(boardId,"boardId is required");
     }
@@ -56,10 +54,9 @@ public class RegisterNoticePostCommand extends CommandRequest {
         //
         NoticePostCdo sample = NoticePostCdo.sample();
         return new RegisterNoticePostCommand(
-                sample().getTitle(),
-                sample.getDisplayName(),
-                sample().getContent(),
-                sample().getBoardId(),
+                sample.getTitle(),
+                sample.getContent(),
+                sample.getBoardId(),
                 sample.getReportOption(),
                 sample.getCommentRule()
         );
@@ -69,7 +66,6 @@ public class RegisterNoticePostCommand extends CommandRequest {
         //
         return NoticePostCdo.builder()
                 .title(title)
-                .displayName(displayName)
                 .content(content)
                 .boardId(boardId)
                 .commentRule(commentRule)

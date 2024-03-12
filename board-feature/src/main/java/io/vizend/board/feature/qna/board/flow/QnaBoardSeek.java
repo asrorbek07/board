@@ -11,7 +11,7 @@
 package io.vizend.board.feature.qna.board.flow;
 
 import io.vizend.board.aggregate.board.domain.entity.vo.BoardType;
-import io.vizend.board.aggregate.board.domain.logic.BoardLogic;
+import io.vizend.board.feature.action.BoardAction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -22,14 +22,14 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor
 public class QnaBoardSeek {
-    private final BoardLogic boardLogic; // 
+    private final BoardAction boardAction;
 
     public Board findQanBoard(String boardId) {
         // 
-        return boardLogic.findBoard(boardId);
+        return boardAction.findBoard(boardId);
     }
 
     public List<Board> findQanBoards() {
-        return boardLogic.findBoardsByType(BoardType.QNABoard);
+        return boardAction.findBoards(BoardType.QNABoard);
     }
 }

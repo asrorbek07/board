@@ -14,7 +14,6 @@ import lombok.*;
 public class BulletinReplyCdo extends CreationDataObject {
     //
     private String text;
-    private String displayName;
     private String commentId;
 
     public static BulletinReplyCdo fromJson(String json) {
@@ -27,7 +26,6 @@ public class BulletinReplyCdo extends CreationDataObject {
         ReplyCdo sample = ReplyCdo.sample();
         return new BulletinReplyCdo(
                 sample.getText(),
-                sample.getDisplayName(),
                 sample.getCommentId()
         );
     }

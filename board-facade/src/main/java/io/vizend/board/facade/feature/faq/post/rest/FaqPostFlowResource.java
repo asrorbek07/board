@@ -33,7 +33,7 @@ public class FaqPostFlowResource implements FaqPostFlowFacade {
     @Override
     @PostMapping("/register-faq-post/command")
     public CommandResponse registerFaqPost(@RequestBody RegisterFaqPostCommand command) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         command.validate();
         FaqPostCdo faqPostCdo = command.genFaqPostCdo();
         String entityId = faqPostFlow.registerFaqPost(faqPostCdo.genPostCdo());
@@ -44,7 +44,7 @@ public class FaqPostFlowResource implements FaqPostFlowFacade {
     @Override
     @PostMapping("/remove-faq-post/command")
     public CommandResponse removeFaqPost(@RequestBody RemoveFaqPostCommand command) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         command.validate();
         String postId = command.getPostId();
         faqPostFlow.removeFaqPost(postId);
@@ -54,12 +54,11 @@ public class FaqPostFlowResource implements FaqPostFlowFacade {
     @Override
     @PostMapping("/modify-faq-post/command")
     public CommandResponse modifyFaqPost(@RequestBody ModifyFaqPostCommand command) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         command.validate();
         String postId = command.getPostId();
         NameValueList nameValueList = command.getNameValueList();
         faqPostFlow.modifyFaqPost(postId, nameValueList);
-
         return command.getResponse();
     }
 }

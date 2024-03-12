@@ -11,7 +11,6 @@
 package io.vizend.board.facade.feature.faq.board.rest;
 
 import io.vizend.accent.domain.type.Offset;
-import io.vizend.board.aggregate.board.domain.entity.vo.BoardType;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +21,7 @@ import io.vizend.board.facade.feature.faq.board.query.FindFaqBoardQuery;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
-import io.vizend.board.facade.feature.faq.board.query.FindFaqBoardsByBoardTypeQuery;
+import io.vizend.board.facade.feature.faq.board.query.FindFaqBoardsQuery;
 import io.vizend.board.facade.feature.faq.board.query.FindFaqBoardByOffsetQuery;
 
 @RestController
@@ -43,8 +42,8 @@ public class FaqBoardSeekResource implements FaqBoardSeekFacade {
     }
 
     @Override
-    @PostMapping("/find-faq-boards-by-board-type/query")
-    public QueryResponse<List<Board>> findFaqBoardsByBoardType(@RequestBody FindFaqBoardsByBoardTypeQuery query) {
+    @PostMapping("/find-faq-boards/query")
+    public QueryResponse<List<Board>> findFaqBoards(@RequestBody FindFaqBoardsQuery query) {
         /* Gen by Vizend Studio v5.1.0 */
         query.validate();
         List<Board> response = faqBoardSeek.findFaqBoards();
@@ -55,7 +54,7 @@ public class FaqBoardSeekResource implements FaqBoardSeekFacade {
     @Override
     @PostMapping("/find-faq-board-by-offset/query")
     public QueryResponse<List<Board>> findFaqBoardByOffset(@RequestBody FindFaqBoardByOffsetQuery query) {
-        /* Gen by Vizend Studio v5.1.0 */
+        //
         query.validate();
         query.getOffset().setSortingField("registrationTime");
         query.getOffset().setSortDirection(Offset.SortDirection.DESCENDING);
