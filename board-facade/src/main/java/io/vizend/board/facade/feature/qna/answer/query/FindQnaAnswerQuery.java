@@ -5,7 +5,7 @@
 */
 package io.vizend.board.facade.feature.qna.answer.query;
 
-import io.vizend.board.aggregate.post.domain.entity.Comment;
+import io.vizend.board.feature.qna.answer.domain.sdo.QnaAnswerRdo;
 import io.vizend.board.feature.qna.answer.domain.sdo.QnaAnswerCdo;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +21,7 @@ import org.springframework.util.Assert;
 @AllArgsConstructor
 @NoArgsConstructor
 @AuthorizedRole
-public class FindQnaAnswerQuery extends QueryRequest<Comment> {
+public class FindQnaAnswerQuery extends QueryRequest<QnaAnswerRdo> {
     //
     private String answerId;
 

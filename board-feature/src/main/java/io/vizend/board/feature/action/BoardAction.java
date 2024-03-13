@@ -9,8 +9,6 @@ import io.vizend.board.aggregate.board.domain.entity.sdo.BoardSequenceCdo;
 import io.vizend.board.aggregate.board.domain.entity.vo.BoardType;
 import io.vizend.board.aggregate.board.domain.logic.BoardLogic;
 import io.vizend.board.aggregate.board.domain.logic.BoardSequenceLogic;
-import io.vizend.board.aggregate.post.domain.logic.CommentLogic;
-import io.vizend.board.aggregate.post.domain.logic.PostLogic;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -22,8 +20,6 @@ public class BoardAction {
     //
     private final BoardSequenceLogic boardSequenceLogic;
     private final BoardLogic boardLogic;
-    private final PostLogic postLogic;
-    private final CommentLogic commentLogic;
 
     public String registerBoard(BoardCdo boardCdo, BoardType boardType) {
         //

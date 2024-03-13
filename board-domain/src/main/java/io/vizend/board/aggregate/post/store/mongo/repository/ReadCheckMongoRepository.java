@@ -13,7 +13,6 @@ import java.util.Optional;
 
 public interface ReadCheckMongoRepository extends MongoRepository<ReadCheckDoc, String> {
     //
-    boolean existsByPostIdAndReaderIdAndReaderName(String postId, String readerId, String readerName);
-    Optional<ReadCheckDoc> findByPostIdAndReaderIdAndReaderName(String postId, String readerId, String readerName);
+    Optional<ReadCheckDoc> findByPostIdAndReaderId(String postId, String readerId);
     List<ReadCheckDoc> findAllByPostId(String postId);
 }

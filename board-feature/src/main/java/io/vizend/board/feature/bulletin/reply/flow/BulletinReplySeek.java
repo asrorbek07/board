@@ -10,12 +10,16 @@
 */
 package io.vizend.board.feature.bulletin.reply.flow;
 
+import io.vizend.board.aggregate.post.domain.entity.ThumbUpRecord;
 import io.vizend.board.feature.action.ReplyAction;
+import io.vizend.board.feature.action.ThumbUpAction;
+import io.vizend.board.feature.bulletin.reply.domain.sdo.BulletinReplyRdo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import io.vizend.board.aggregate.post.domain.entity.Reply;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -23,14 +27,19 @@ import java.util.List;
 public class BulletinReplySeek {
     //
     private final ReplyAction replyAction;
+    private final ThumbUpAction thumbUpAction;
 
-    public Reply findBulletinReply(String replyId) {
-        // 
-        return replyAction.findReply(replyId);
+    private BulletinReplyRdo getBulletinReplyRdo(Reply reply) {
+        //
+        List<ThumbUpRecord> thumbUps = thumbUpAction.findThumbUps(reply.getId());
+        return BulletinReplyRdo.builder()
+                .reply(reply)
+                .thumbUps(thumbUps)
+                .build();
     }
 
-    public List<Reply> findBulletinReplies(String commentId) {
+    public List<BulletinReplyRdo> findBulletinReplies(String commentId) {
         //
-        return replyAction.findReplies(commentId);
+        return replyAction.findReplies(commentId).stream().map(this::getBulletinReplyRdo).collect(Collectors.toList());
     }
 }

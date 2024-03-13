@@ -10,12 +10,12 @@
 */
 package io.vizend.board.facade.feature.qna.answer.rest;
 
+import io.vizend.board.feature.qna.answer.domain.sdo.QnaAnswerRdo;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.RequiredArgsConstructor;
 import io.vizend.board.feature.qna.answer.flow.QnaAnswerSeek;
 import io.vizend.accent.domain.message.QueryResponse;
-import io.vizend.board.aggregate.post.domain.entity.Comment;
 import io.vizend.board.facade.feature.qna.answer.query.FindQnaAnswerQuery;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,22 +30,22 @@ public class QnaAnswerSeekResource implements QnaAnswerSeekFacade {
 
     @Override
     @PostMapping("/find-qna-answer/query")
-    public QueryResponse<Comment> findQnaAnswer(@RequestBody FindQnaAnswerQuery query) {
+    public QueryResponse<QnaAnswerRdo> findQnaAnswer(@RequestBody FindQnaAnswerQuery query) {
         /* Gen by Vizend Studio v5.1.0 */
         query.validate();
         String answerId = query.getAnswerId();
-        Comment response = qnaAnswerSeek.findQnaAnswer(answerId);
+        QnaAnswerRdo response = qnaAnswerSeek.findQnaAnswer(answerId);
         query.setResponse(response);
         return query.getResponse();
     }
 
     @Override
     @PostMapping("/find-qna-answers/query")
-    public QueryResponse<List<Comment>> findQnaAnswers(@RequestBody FindQnaAnswersQuery query) {
+    public QueryResponse<List<QnaAnswerRdo>> findQnaAnswers(@RequestBody FindQnaAnswersQuery query) {
         /* Gen by Vizend Studio v5.1.0 */
         query.validate();
         String questionId = query.getQuestionId();
-        List<Comment> response = qnaAnswerSeek.findQnaAnswers(questionId);
+        List<QnaAnswerRdo> response = qnaAnswerSeek.findQnaAnswers(questionId);
         query.setResponse(response);
         return query.getResponse();
     }

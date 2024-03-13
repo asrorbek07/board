@@ -11,7 +11,6 @@ import io.vizend.accent.util.json.JsonUtil;
 import io.vizend.board.aggregate.board.domain.entity.vo.CommentRule;
 import io.vizend.board.aggregate.post.domain.entity.sdo.PostCdo;
 import io.vizend.board.aggregate.post.domain.entity.vo.PostState;
-import io.vizend.board.aggregate.post.domain.entity.vo.ReportOption;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,7 +28,6 @@ public class Post extends StageEntity implements DomainAggregate {
     private String content;
     private PostState postState;
     private CommentRule commentRule;
-    private ReportOption reportOption;
     @FieldSourceId
     private String boardId;
 
@@ -92,9 +90,6 @@ public class Post extends StageEntity implements DomainAggregate {
                     break;
                 case "postState":
                     this.postState = PostState.valueOf(value);
-                    break;
-                case "reportOption":
-                    this.reportOption = JsonUtil.fromJson(value, ReportOption.class);
                     break;
                 case "commentRule":
                     this.commentRule = JsonUtil.fromJson(value, CommentRule.class);

@@ -6,9 +6,6 @@
 package io.vizend.board.facade.feature.notice.post.command;
 
 import io.vizend.board.aggregate.board.domain.entity.vo.CommentRule;
-import io.vizend.board.aggregate.post.domain.entity.vo.ReportOption;
-import io.vizend.board.facade.feature.bulletin.post.command.RegisterBulletinPostCommand;
-import io.vizend.board.feature.bulletin.post.domain.sdo.BulletinPostCdo;
 import io.vizend.board.feature.notice.post.domain.sdo.NoticePostCdo;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,8 +26,6 @@ public class RegisterNoticePostCommand extends CommandRequest {
     private String title;
     private String content;
     private String boardId;
-    private ReportOption reportOption;
-    private CommentRule commentRule;
 
     public void validate() {
         //
@@ -56,9 +51,7 @@ public class RegisterNoticePostCommand extends CommandRequest {
         return new RegisterNoticePostCommand(
                 sample.getTitle(),
                 sample.getContent(),
-                sample.getBoardId(),
-                sample.getReportOption(),
-                sample.getCommentRule()
+                sample.getBoardId()
         );
     }
 
@@ -68,8 +61,6 @@ public class RegisterNoticePostCommand extends CommandRequest {
                 .title(title)
                 .content(content)
                 .boardId(boardId)
-                .commentRule(commentRule)
-                .reportOption(reportOption)
                 .build();
     }
 

@@ -6,9 +6,9 @@
 package io.vizend.board.facade.feature.bulletin.thumbup.rest;
 
 import io.vizend.accent.domain.message.CommandResponse;
-import io.vizend.board.facade.feature.bulletin.thumbup.command.RegisterBulletinThumbUpCommand;
+import io.vizend.board.facade.feature.bulletin.thumbup.command.ToggleBulletinThumbUpCommand;
 
 public interface BulletinThumbUpFlowFacade {
-    /* Gen by Vizend Studio v5.1.0 */
-    CommandResponse registerBulletinThumbUp(RegisterBulletinThumbUpCommand command);
+    //
+    CommandResponse toggleBulletinThumbUp(ToggleBulletinThumbUpCommand command);
 }

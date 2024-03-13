@@ -17,7 +17,6 @@ import lombok.*;
 @AllArgsConstructor
 public class BoardPolicy implements ValueObject {
     //
-    private DisplayNameType displayNameType;
     private PostRule postRule;
     private CommentRule commentRule;
 
@@ -25,9 +24,42 @@ public class BoardPolicy implements ValueObject {
         //
         return BoardPolicy
                 .builder()
-                .displayNameType(DisplayNameType.Nickname)
                 .postRule(PostRule.defaultRule())
                 .commentRule(CommentRule.defaultRule())
+                .build();
+    }
+
+
+    public static BoardPolicy genFaqBoardPolicy(){
+        //
+        PostRule postRule = PostRule.builder()
+                .anonymous(false)
+                .thumbUp(false)
+                .build();
+
+        CommentRule commentRule = CommentRule.builder()
+                .allowed(false)
+                .anonymous(false)
+                .thumbUp(false)
+                .build();
+
+        return BoardPolicy.builder()
+                .postRule(postRule)
+                .commentRule(commentRule)
+                .build();
+    }
+
+    public static BoardPolicy genNoticeBoardPolicy(){
+        //
+        CommentRule commentRule = CommentRule.builder()
+                .allowed(false)
+                .anonymous(false)
+                .thumbUp(false)
+                .build();
+
+        return BoardPolicy.builder()
+                .postRule(PostRule.defaultRule())
+                .commentRule(commentRule)
                 .build();
     }
 

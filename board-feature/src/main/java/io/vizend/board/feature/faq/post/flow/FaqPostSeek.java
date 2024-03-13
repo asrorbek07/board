@@ -11,11 +11,13 @@
 package io.vizend.board.feature.faq.post.flow;
 
 import io.vizend.board.feature.action.PostAction;
+import io.vizend.board.feature.faq.post.domain.sdo.FaqPostRdo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import io.vizend.board.aggregate.post.domain.entity.Post;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -24,13 +26,20 @@ public class FaqPostSeek {
     //
     private final PostAction postAction;
 
-    public Post findFaqPost(String postId) {
+    public FaqPostRdo findFaqPost(String postId) {
         //
-        return postAction.findPost(postId);
+        Post post = postAction.findPost(postId);
+        return getFaqPostRdo(post);
     }
 
-    public List<Post> findFaqPosts(String boardId) {
+    private FaqPostRdo getFaqPostRdo(Post post) {
+        return FaqPostRdo.builder()
+                .post(post)
+                .build();
+    }
+
+    public List<FaqPostRdo> findFaqPosts(String boardId) {
         //
-        return postAction.findPosts(boardId);
+        return postAction.findPosts(boardId).stream().map(this::getFaqPostRdo).collect(Collectors.toList());
     }
 }

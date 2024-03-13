@@ -19,8 +19,8 @@ public class NoticeThumbUpFlow {
     //
     private final ThumbUpAction thumbUpAction;
 
-    public String registerNoticeThumbUp(ThumbUpRecordCdo thumbUpRecordCdo) {
+    public String toggleNoticeThumbUp(ThumbUpRecordCdo thumbUpRecordCdo) {
         //
-        return thumbUpAction.registerThumbUp(thumbUpRecordCdo);
+        return thumbUpAction.toggleThumbUp(thumbUpRecordCdo);
     }
 }

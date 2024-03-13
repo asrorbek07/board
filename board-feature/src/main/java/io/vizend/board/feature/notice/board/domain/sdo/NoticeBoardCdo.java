@@ -16,7 +16,6 @@ public class NoticeBoardCdo extends CreationDataObject {
     //
     private String title;
     private String description;
-    private BoardPolicy boardPolicy;
 
     public static NoticeBoardCdo fromJson(String json) {
         //
@@ -30,7 +29,6 @@ public class NoticeBoardCdo extends CreationDataObject {
                 .builder()
                 .title(boardCdo.getTitle())
                 .description(boardCdo.getDescription())
-                .boardPolicy(boardCdo.getBoardPolicy())
                 .build();
     }
 
@@ -44,8 +42,8 @@ public class NoticeBoardCdo extends CreationDataObject {
         return BoardCdo.builder()
                 .title(this.title)
                 .description(this.description)
-                .boardType(BoardType.BulletinBoard)
-                .boardPolicy(this.boardPolicy)
+                .boardType(BoardType.NoticeBoard)
+                .boardPolicy(BoardPolicy.genNoticeBoardPolicy())
                 .build();
     }
 

@@ -6,7 +6,6 @@ import io.vizend.accent.util.json.JsonUtil;
 import io.vizend.board.aggregate.board.domain.entity.sdo.BoardCdo;
 import io.vizend.board.aggregate.board.domain.entity.vo.CommentRule;
 import io.vizend.board.aggregate.post.domain.entity.Post;
-import io.vizend.board.aggregate.post.domain.entity.vo.ReportOption;
 import lombok.*;
 
 @Getter
@@ -22,7 +21,6 @@ public class PostCdo extends CreationDataObject {
     private String content;
     private String boardId;
     private CommentRule commentRule;
-    private ReportOption reportOption;
 
     public static PostCdo fromJson(String json) {
         //
@@ -39,7 +37,6 @@ public class PostCdo extends CreationDataObject {
                 .content("This is my content for the post")
                 .boardId(BoardCdo.sample().genId())
                 .commentRule(CommentRule.sample())
-                .reportOption(ReportOption.sample())
                 .build();
     }
 

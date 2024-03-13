@@ -6,8 +6,6 @@
 package io.vizend.board.facade.feature.qna.question.command;
 
 import io.vizend.board.aggregate.board.domain.entity.vo.CommentRule;
-import io.vizend.board.aggregate.post.domain.entity.vo.ReportOption;
-import io.vizend.board.feature.faq.post.domain.sdo.FaqPostCdo;
 import io.vizend.board.feature.qna.question.domain.sdo.QnaQuestionCdo;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,7 +26,6 @@ public class RegisterQnaQuestionCommand extends CommandRequest {
     private String title;
     private String content;
     private String boardId;
-    private ReportOption reportOption;
     private CommentRule commentRule;
 
     public void validate() {
@@ -56,7 +53,6 @@ public class RegisterQnaQuestionCommand extends CommandRequest {
                 sample.getTitle(),
                 sample.getContent(),
                 sample.getBoardId(),
-                sample.getReportOption(),
                 sample.getCommentRule()
         );
     }
@@ -68,7 +64,6 @@ public class RegisterQnaQuestionCommand extends CommandRequest {
                 .content(content)
                 .boardId(boardId)
                 .commentRule(commentRule)
-                .reportOption(reportOption)
                 .build();
     }
 

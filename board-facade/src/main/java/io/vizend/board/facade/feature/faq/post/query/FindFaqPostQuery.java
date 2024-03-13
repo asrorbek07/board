@@ -7,6 +7,7 @@ package io.vizend.board.facade.feature.faq.post.query;
 
 import io.vizend.board.aggregate.post.domain.entity.Post;
 import io.vizend.board.feature.faq.post.domain.sdo.FaqPostCdo;
+import io.vizend.board.feature.faq.post.domain.sdo.FaqPostRdo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ import org.springframework.util.Assert;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class FindFaqPostQuery extends QueryRequest<Post> {
+public class FindFaqPostQuery extends QueryRequest<FaqPostRdo> {
     //
     private String postId;
 

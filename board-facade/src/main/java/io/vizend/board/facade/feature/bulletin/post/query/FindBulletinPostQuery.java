@@ -7,6 +7,7 @@ package io.vizend.board.facade.feature.bulletin.post.query;
 
 import io.vizend.board.aggregate.post.domain.entity.Post;
 import io.vizend.board.feature.bulletin.post.domain.sdo.BulletinPostCdo;
+import io.vizend.board.feature.bulletin.post.domain.sdo.BulletinPostRdo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ import org.springframework.util.Assert;
 @AllArgsConstructor
 @NoArgsConstructor
 @AuthorizedRole
-public class FindBulletinPostQuery extends QueryRequest<Post> {
+public class FindBulletinPostQuery extends QueryRequest<BulletinPostRdo> {
     //
     private String postId;
 

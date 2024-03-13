@@ -27,13 +27,11 @@ public class RegisterNoticeBoardCommand extends CommandRequest {
     //
     private String title;
     private String description;
-    private BoardPolicy boardPolicy;
 
     public void validate() {
         //
         Assert.notNull(title, "title' is required");
         Assert.notNull(description, "'description' is required");
-        Assert.notNull(boardPolicy, "'boardPolicy' is required");
     }
 
     @Override
@@ -52,7 +50,6 @@ public class RegisterNoticeBoardCommand extends CommandRequest {
         return NoticeBoardCdo.builder()
                 .title(title)
                 .description(description)
-                .boardPolicy(boardPolicy)
                 .build();
     }
 
@@ -61,8 +58,7 @@ public class RegisterNoticeBoardCommand extends CommandRequest {
         NoticeBoardCdo sample = NoticeBoardCdo.sample();
         return new RegisterNoticeBoardCommand(
                 sample.getTitle(),
-                sample.getDescription(),
-                sample.getBoardPolicy()
+                sample.getDescription()
         );
     }
 

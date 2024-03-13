@@ -10,6 +10,7 @@
 */
 package io.vizend.board.facade.feature.notice.post.rest;
 
+import io.vizend.board.feature.notice.post.domain.sdo.NoticePostRdo;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.RequiredArgsConstructor;
@@ -30,22 +31,22 @@ public class NoticePostSeekResource implements NoticePostSeekFacade {
 
     @Override
     @PostMapping("/find-notice-post/query")
-    public QueryResponse<Post> findNoticePost(@RequestBody FindNoticePostQuery query) {
-        /* Gen by Vizend Studio v5.1.0 */
+    public QueryResponse<NoticePostRdo> findNoticePost(@RequestBody FindNoticePostQuery query) {
+        //
         query.validate();
         String postId = query.getPostId();
-        Post response = noticePostSeek.findNoticePost(postId);
+        NoticePostRdo response = noticePostSeek.findNoticePost(postId);
         query.setResponse(response);
         return query.getResponse();
     }
 
     @Override
     @PostMapping("/find-notice-posts/query")
-    public QueryResponse<List<Post>> findNoticePosts(@RequestBody FindNoticePostsQuery query) {
-        /* Gen by Vizend Studio v5.1.0 */
+    public QueryResponse<List<NoticePostRdo>> findNoticePosts(@RequestBody FindNoticePostsQuery query) {
+        //
         query.validate();
         String boardId = query.getBoardId();
-        List<Post> response = noticePostSeek.findNoticePosts(boardId);
+        List<NoticePostRdo> response = noticePostSeek.findNoticePosts(boardId);
         query.setResponse(response);
         return query.getResponse();
     }

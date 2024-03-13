@@ -20,7 +20,7 @@ import org.springframework.util.Assert;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@AuthorizedRole(BoardRole.Director)
+@AuthorizedRole()
 public class RemoveQnaAnswerCommand extends CommandRequest {
 
     private String answerId;

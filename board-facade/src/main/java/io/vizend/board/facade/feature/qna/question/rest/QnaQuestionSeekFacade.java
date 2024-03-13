@@ -11,13 +11,13 @@
 package io.vizend.board.facade.feature.qna.question.rest;
 
 import io.vizend.accent.domain.message.QueryResponse;
-import io.vizend.board.aggregate.post.domain.entity.Post;
 import io.vizend.board.facade.feature.qna.question.query.FindQnaQuestionQuery;
 import java.util.List;
 import io.vizend.board.facade.feature.qna.question.query.FindQnaQuestionsQuery;
+import io.vizend.board.feature.qna.question.domain.sdo.QnaQuestionRdo;
 
 public interface QnaQuestionSeekFacade {
     /* Gen by Vizend Studio v5.1.0 */
-    QueryResponse<Post> findQnaQuestion(FindQnaQuestionQuery query);
-    QueryResponse<List<Post>> findQnaQuestions(FindQnaQuestionsQuery query);
+    QueryResponse<QnaQuestionRdo> findQnaQuestion(FindQnaQuestionQuery query);
+    QueryResponse<List<QnaQuestionRdo>> findQnaQuestions(FindQnaQuestionsQuery query);
 }

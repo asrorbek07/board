@@ -17,6 +17,15 @@ public class ReadCheckCdo extends CreationDataObject {
     private IdName reader;
     private String postId;
 
+    public ReadCheckCdo(String postId) {
+        //
+        String readerId = StageContext.get().getActorId();
+        String readerName = StageContext.get().getDisplayName();
+        IdName reader = IdName.of(readerId, readerName);
+        this.reader = reader;
+        this.postId = postId;
+    }
+
     public static ReadCheckCdo fromJson(String json) {
         //
         return JsonUtil.fromJson(json, ReadCheckCdo.class);

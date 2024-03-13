@@ -10,6 +10,7 @@
 */
 package io.vizend.board.facade.feature.bulletin.post.rest;
 
+import io.vizend.board.feature.bulletin.post.domain.sdo.BulletinPostRdo;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.RequiredArgsConstructor;
@@ -26,26 +27,27 @@ import io.vizend.board.facade.feature.bulletin.post.query.FindBulletinPostsQuery
 @RequestMapping("/feature/bulletin/post")
 @RequiredArgsConstructor
 public class BulletinPostSeekResource implements BulletinPostSeekFacade {
+    //
     private final BulletinPostSeek bulletinPostSeek;
 
     @Override
     @PostMapping("/find-bulletin-post/query")
-    public QueryResponse<Post> findBulletinPost(@RequestBody FindBulletinPostQuery query) {
-        /* Gen by Vizend Studio v5.1.0 */
+    public QueryResponse<BulletinPostRdo> findBulletinPost(@RequestBody FindBulletinPostQuery query) {
+        //
         query.validate();
         String postId = query.getPostId();
-        Post response = bulletinPostSeek.findBulletinPost(postId);
+        BulletinPostRdo response = bulletinPostSeek.findBulletinPost(postId);
         query.setResponse(response);
         return query.getResponse();
     }
 
     @Override
     @PostMapping("/find-bulletin-posts/query")
-    public QueryResponse<List<Post>> findBulletinPosts(@RequestBody FindBulletinPostsQuery query) {
-        /* Gen by Vizend Studio v5.1.0 */
+    public QueryResponse<List<BulletinPostRdo>> findBulletinPosts(@RequestBody FindBulletinPostsQuery query) {
+        //
         query.validate();
         String boardId = query.getBoardId();
-        List<Post> response = bulletinPostSeek.findBulletinPosts(boardId);
+        List<BulletinPostRdo> response = bulletinPostSeek.findBulletinPosts(boardId);
         query.setResponse(response);
         return query.getResponse();
     }

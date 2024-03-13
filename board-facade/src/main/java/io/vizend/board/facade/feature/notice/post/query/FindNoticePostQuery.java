@@ -7,6 +7,7 @@ package io.vizend.board.facade.feature.notice.post.query;
 
 import io.vizend.board.aggregate.post.domain.entity.Post;
 import io.vizend.board.feature.notice.post.domain.sdo.NoticePostCdo;
+import io.vizend.board.feature.notice.post.domain.sdo.NoticePostRdo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ import org.springframework.util.Assert;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class FindNoticePostQuery extends QueryRequest<Post> {
+public class FindNoticePostQuery extends QueryRequest<NoticePostRdo> {
     //
     private String postId;
 

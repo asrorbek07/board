@@ -11,10 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.RequiredArgsConstructor;
 import io.vizend.board.feature.bulletin.thumbup.flow.BulletinThumbUpFlow;
 import io.vizend.accent.domain.message.CommandResponse;
-import io.vizend.board.facade.feature.bulletin.thumbup.command.RegisterBulletinThumbUpCommand;
+import io.vizend.board.facade.feature.bulletin.thumbup.command.ToggleBulletinThumbUpCommand;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
-import io.vizend.board.aggregate.post.domain.entity.vo.SentenceType;
 
 @RestController
 @RequestMapping("/feature/bulletin/thumbup")
@@ -24,12 +23,12 @@ public class BulletinThumbUpFlowResource implements BulletinThumbUpFlowFacade {
     private final BulletinThumbUpFlow bulletinThumbUpFlow;
 
     @Override
-    @PostMapping("/register-bulletin-thumb-up/command")
-    public CommandResponse registerBulletinThumbUp(@RequestBody RegisterBulletinThumbUpCommand command) {
+    @PostMapping("/toggle-bulletin-thumb-up/command")
+    public CommandResponse toggleBulletinThumbUp(@RequestBody ToggleBulletinThumbUpCommand command) {
         //
         command.validate();
         BulletinThumbUpRecordCdo bulletinThumbUpRecordCdo = command.genBulletinThumbUpRecordCdo();
-        String entityId = bulletinThumbUpFlow.registerBulletinThumbUp(bulletinThumbUpRecordCdo.genThumbUpRecordCdo());
+        String entityId = bulletinThumbUpFlow.toggleBulletinThumbUp(bulletinThumbUpRecordCdo.genThumbUpRecordCdo());
         command.setResponse(entityId);
         return command.getResponse();
     }

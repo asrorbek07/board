@@ -49,7 +49,7 @@ public class ThumbUpRecord extends StageEntity implements DomainAggregate {
         //
         return String.format("%s-%s",
                 sentenceId,
-                reader.getName()
+                reader.getId()
         );    }
 
     public static ThumbUpRecord fromJson(String json) {

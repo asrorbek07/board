@@ -24,14 +24,14 @@ import io.vizend.board.facade.feature.qna.board.command.ModifyQnaBoardCommand;
 import io.vizend.accent.domain.type.NameValueList;
 
 @RestController
-@RequestMapping("/feature/qan/board")
+@RequestMapping("/feature/qna/board")
 @RequiredArgsConstructor
 public class QnaBoardFlowResource implements QnaBoardFlowFacade {
     //
     private final QnaBoardFlow qnaBoardFlow;
 
     @Override
-    @PostMapping("/register-qan-board/command")
+    @PostMapping("/register-qna-board/command")
     public CommandResponse registerQanBoard(@RequestBody RegisterQnaBoardCommand command) {
         //
         QnaBoardCdo qnaBoardCdo = command.genQanBoardCdo();
@@ -41,7 +41,7 @@ public class QnaBoardFlowResource implements QnaBoardFlowFacade {
     }
 
     @Override
-    @PostMapping("/modify-qan-board/command")
+    @PostMapping("/modify-qna-board/command")
     public CommandResponse modifyQanBoard(@RequestBody ModifyQnaBoardCommand command) {
         //
         command.validate();
@@ -52,7 +52,7 @@ public class QnaBoardFlowResource implements QnaBoardFlowFacade {
     }
 
     @Override
-    @PostMapping("/remove-qan-board/command")
+    @PostMapping("/remove-qna-board/command")
     public CommandResponse removeQanBoard(@RequestBody RemoveQnaBoardCommand command) {
         //
         command.validate();

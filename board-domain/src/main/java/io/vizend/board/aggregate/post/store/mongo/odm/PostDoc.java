@@ -12,7 +12,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import io.vizend.accent.store.mongo.StageEntityDoc;
 import io.vizend.board.aggregate.post.domain.entity.vo.PostState;
 import io.vizend.board.aggregate.board.domain.entity.vo.CommentRule;
-import io.vizend.board.aggregate.post.domain.entity.vo.ReportOption;
 import io.vizend.board.aggregate.post.domain.entity.Post;
 import org.springframework.beans.BeanUtils;
 import java.util.List;
@@ -34,7 +33,6 @@ public class PostDoc extends StageEntityDoc {
     private String content;
     private PostState postState;
     private CommentRule commentRule;
-    private ReportOption reportOption;
     private String boardId;
 
     public PostDoc(Post post) {

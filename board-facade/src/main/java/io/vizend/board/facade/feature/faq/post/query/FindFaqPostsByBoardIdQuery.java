@@ -7,6 +7,7 @@ package io.vizend.board.facade.feature.faq.post.query;
 
 import io.vizend.board.aggregate.board.domain.entity.sdo.BoardCdo;
 import io.vizend.board.aggregate.post.domain.entity.Post;
+import io.vizend.board.feature.faq.post.domain.sdo.FaqPostRdo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.AllArgsConstructor;
@@ -23,7 +24,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @AuthorizedRole
-public class FindFaqPostsByBoardIdQuery extends QueryRequest<List<Post>> {
+public class FindFaqPostsByBoardIdQuery extends QueryRequest<List<FaqPostRdo>> {
     //
     private String boardId;
 

@@ -6,6 +6,7 @@
 package io.vizend.board.facade.feature.bulletin.reply.query;
 
 import io.vizend.board.aggregate.post.domain.entity.Reply;
+import io.vizend.board.feature.bulletin.reply.domain.sdo.BulletinReplyRdo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.AllArgsConstructor;
@@ -22,8 +23,8 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@AuthorizedRole(BoardRole.Director)
-public class FindBulletinRepliesQuery extends QueryRequest<List<Reply>> {
+@AuthorizedRole()
+public class FindBulletinRepliesQuery extends QueryRequest<List<BulletinReplyRdo>> {
     //
     private String commentId;
 

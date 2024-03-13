@@ -19,8 +19,6 @@ import io.vizend.accent.domain.message.CommandResponse;
 import io.vizend.board.facade.feature.notice.post.command.RegisterNoticePostCommand;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
-import io.vizend.board.aggregate.post.domain.entity.vo.ReportOption;
-import io.vizend.board.aggregate.board.domain.entity.vo.CommentRule;
 import io.vizend.board.facade.feature.notice.post.command.ModifyNoticePostCommand;
 import io.vizend.accent.domain.type.NameValueList;
 import io.vizend.board.facade.feature.notice.post.command.RemoveNoticePostCommand;

@@ -10,15 +10,19 @@
 */
 package io.vizend.board.feature.qna.question.flow;
 
-import io.vizend.board.aggregate.board.domain.logic.BoardLogic;
-import io.vizend.board.aggregate.post.domain.logic.PostLogic;
+import io.vizend.board.aggregate.post.domain.entity.ReadCheck;
+import io.vizend.board.aggregate.post.domain.entity.ThumbUpRecord;
 import io.vizend.board.feature.action.PostAction;
+import io.vizend.board.feature.action.ReadCheckAction;
+import io.vizend.board.feature.action.ThumbUpAction;
+import io.vizend.board.feature.qna.question.domain.sdo.QnaQuestionRdo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import io.vizend.board.aggregate.post.domain.entity.Post;
+
 import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -26,14 +30,31 @@ import java.util.NoSuchElementException;
 public class QnaQuestionSeek {
     //
     private final PostAction postAction;
+    private final ThumbUpAction thumbUpAction;
+    private final ReadCheckAction readCheckAction;
 
-    public Post findQnaQuestion(String questionId) {
-        // 
-        return postAction.findPost(questionId);
+    public QnaQuestionRdo findQnaQuestionRdo(String questionId) {
+        //
+        Post post = postAction.findPost(questionId);
+        QnaQuestionRdo qnaQuestionRdo = genQnaQuestionRdo(post);
+        readCheckAction.readPost(post);
+        return qnaQuestionRdo;
     }
 
-    public List<Post> findQnaQuestions(String boardId) {
+    private QnaQuestionRdo genQnaQuestionRdo(Post post) {
         //
-        return postAction.findPosts(boardId);
+        String questionId = post.getId();
+        List<ThumbUpRecord> thumbUps = thumbUpAction.findThumbUps(questionId);
+        List<ReadCheck> readChecks = readCheckAction.findReadChecks(questionId);
+        return QnaQuestionRdo.builder()
+                .post(post)
+                .thumbUps(thumbUps)
+                .readChecks(readChecks)
+                .build();
+    }
+
+    public List<QnaQuestionRdo> findQnaQuestions(String boardId) {
+        //
+        return postAction.findPosts(boardId).stream().map(this::genQnaQuestionRdo).collect(Collectors.toList());
     }
 }

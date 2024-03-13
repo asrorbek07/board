@@ -25,12 +25,10 @@ public class RegisterQnaBoardCommand extends CommandRequest {
     //
     private String title;
     private String description;
-    private BoardPolicy boardPolicy;
     public void validate() {
         //
         Assert.notNull(title, "title' is required");
         Assert.notNull(description, "'description' is required");
-        Assert.notNull(boardPolicy, "'boardPolicy' is required");
     }
 
     @Override
@@ -48,9 +46,7 @@ public class RegisterQnaBoardCommand extends CommandRequest {
         //
         return QnaBoardCdo.builder()
                 .title(title)
-                .description(description)
-                .boardPolicy(boardPolicy)
-                .build();
+                .description(description).build();
     }
 
     public static RegisterQnaBoardCommand sample() {
@@ -58,8 +54,7 @@ public class RegisterQnaBoardCommand extends CommandRequest {
         QnaBoardCdo sample = QnaBoardCdo.sample();
         return new RegisterQnaBoardCommand(
                 sample.getTitle(),
-                sample.getDescription(),
-                sample.getBoardPolicy()
+                sample.getDescription()
         );
     }
 

@@ -11,13 +11,13 @@
 package io.vizend.board.facade.feature.bulletin.reply.rest;
 
 import io.vizend.accent.domain.message.QueryResponse;
-import io.vizend.board.aggregate.post.domain.entity.Reply;
-import io.vizend.board.facade.feature.bulletin.reply.query.FindBulletinReplyQuery;
+
 import java.util.List;
 import io.vizend.board.facade.feature.bulletin.reply.query.FindBulletinRepliesQuery;
+import io.vizend.board.feature.bulletin.reply.domain.sdo.BulletinReplyRdo;
 
 public interface BulletinReplySeekFacade {
-    /* Gen by Vizend Studio v5.1.0 */
-    QueryResponse<Reply> findBulletinReply(FindBulletinReplyQuery query);
-    QueryResponse<List<Reply>> findBulletinReplies(FindBulletinRepliesQuery query);
+    //
+
+    QueryResponse<List<BulletinReplyRdo>> findBulletinReplies(FindBulletinRepliesQuery query);
 }

@@ -6,14 +6,12 @@
 package io.vizend.board.facade.feature.faq.post.command;
 
 import io.vizend.board.aggregate.board.domain.entity.vo.CommentRule;
-import io.vizend.board.aggregate.post.domain.entity.vo.ReportOption;
 import io.vizend.board.feature.faq.post.domain.sdo.FaqPostCdo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import io.vizend.accent.domain.annotation.AuthorizedRole;
-import io.vizend.board.facade.BoardRole;
 import io.vizend.accent.domain.message.CommandRequest;
 import io.vizend.accent.util.json.JsonUtil;
 import org.springframework.util.Assert;
@@ -22,14 +20,12 @@ import org.springframework.util.Assert;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@AuthorizedRole(BoardRole.Director)
+@AuthorizedRole()
 public class RegisterFaqPostCommand extends CommandRequest {
     //
     private String title;
     private String content;
     private String boardId;
-    private ReportOption reportOption;
-    private CommentRule commentRule;
     public void validate() {
         //
         Assert.notNull(title,"title is required");
@@ -54,9 +50,7 @@ public class RegisterFaqPostCommand extends CommandRequest {
         return new RegisterFaqPostCommand(
                 sample.getTitle(),
                 sample.getContent(),
-                sample.getBoardId(),
-                sample.getReportOption(),
-                sample.getCommentRule()
+                sample.getBoardId()
         );
     }
 
@@ -66,8 +60,6 @@ public class RegisterFaqPostCommand extends CommandRequest {
                 .title(title)
                 .content(content)
                 .boardId(boardId)
-                .commentRule(commentRule)
-                .reportOption(reportOption)
                 .build();
     }
 

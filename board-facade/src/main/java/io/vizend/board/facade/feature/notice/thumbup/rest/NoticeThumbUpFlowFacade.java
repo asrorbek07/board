@@ -6,9 +6,9 @@
 package io.vizend.board.facade.feature.notice.thumbup.rest;
 
 import io.vizend.accent.domain.message.CommandResponse;
-import io.vizend.board.facade.feature.notice.thumbup.command.RegisterNoticeThumbUpCommand;
+import io.vizend.board.facade.feature.notice.thumbup.command.ToggleNoticeThumbUpCommand;
 
 public interface NoticeThumbUpFlowFacade {
-    /* Gen by Vizend Studio v5.1.0 */
-    CommandResponse registerNoticeThumbUp(RegisterNoticeThumbUpCommand command);
+    //
+    CommandResponse toggleNoticeThumbUp(ToggleNoticeThumbUpCommand command);
 }

@@ -10,11 +10,16 @@
 */
 package io.vizend.board.feature.bulletin.comment.flow;
 
+import io.vizend.board.aggregate.post.domain.entity.ThumbUpRecord;
 import io.vizend.board.feature.action.CommentAction;
+import io.vizend.board.feature.action.ThumbUpAction;
+import io.vizend.board.feature.bulletin.comment.domain.sdo.BulletinCommentRdo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import io.vizend.board.aggregate.post.domain.entity.Comment;
 
 @Service
@@ -23,14 +28,25 @@ import io.vizend.board.aggregate.post.domain.entity.Comment;
 public class BulletinCommentSeek {
     //
     private final CommentAction commentAction;
+    private final ThumbUpAction thumbUpAction;
 
-    public List<Comment> findBulletinComments(String postId) {
+    public List<BulletinCommentRdo> findBulletinComments(String postId) {
         // 
-        return commentAction.findComments(postId);
+        return commentAction.findComments(postId).stream().map(this::getBulletinCommentRdo).collect(Collectors.toList());
     }
 
-    public Comment findBulletinComment(String commentId) {
+    public BulletinCommentRdo findBulletinComment(String commentId) {
         //
-        return commentAction.findComment(commentId);
+        Comment comment = commentAction.findComment(commentId);
+        return getBulletinCommentRdo(comment);
+    }
+
+    private BulletinCommentRdo getBulletinCommentRdo(Comment comment) {
+        //
+        List<ThumbUpRecord> thumbUps = thumbUpAction.findThumbUps(comment.getId());
+        return BulletinCommentRdo.builder()
+                .comment(comment)
+                .thumbUps(thumbUps)
+                .build();
     }
 }

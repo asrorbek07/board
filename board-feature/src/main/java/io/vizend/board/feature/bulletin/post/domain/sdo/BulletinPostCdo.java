@@ -5,7 +5,6 @@ import io.vizend.accent.domain.entity.CreationDataObject;
 import io.vizend.accent.util.json.JsonUtil;
 import io.vizend.board.aggregate.board.domain.entity.vo.CommentRule;
 import io.vizend.board.aggregate.post.domain.entity.sdo.PostCdo;
-import io.vizend.board.aggregate.post.domain.entity.vo.ReportOption;
 import lombok.*;
 
 @Getter
@@ -18,7 +17,6 @@ public class BulletinPostCdo extends CreationDataObject {
     private String title;
     private String content;
     private String boardId;
-    private ReportOption reportOption;
     private CommentRule commentRule;
 
     public static BulletinPostCdo fromJson(String json) {
@@ -34,7 +32,6 @@ public class BulletinPostCdo extends CreationDataObject {
                 .title(postCdoSample.getTitle())
                 .content(postCdoSample.getContent())
                 .boardId(postCdoSample.getBoardId())
-                .reportOption(postCdoSample.getReportOption())
                 .commentRule(postCdoSample.getCommentRule())
                 .build();
     }
@@ -63,7 +60,6 @@ public class BulletinPostCdo extends CreationDataObject {
                 .displayName(StageContext.get().getDisplayName())
                 .content(content)
                 .boardId(boardId)
-                .reportOption(reportOption)
                 .commentRule(commentRule)
                 .build();
     }

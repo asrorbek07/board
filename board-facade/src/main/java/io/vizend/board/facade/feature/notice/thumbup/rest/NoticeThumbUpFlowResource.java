@@ -11,10 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.RequiredArgsConstructor;
 import io.vizend.board.feature.notice.thumbup.flow.NoticeThumbUpFlow;
 import io.vizend.accent.domain.message.CommandResponse;
-import io.vizend.board.facade.feature.notice.thumbup.command.RegisterNoticeThumbUpCommand;
+import io.vizend.board.facade.feature.notice.thumbup.command.ToggleNoticeThumbUpCommand;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
-import io.vizend.board.aggregate.post.domain.entity.vo.SentenceType;
 
 @RestController
 @RequestMapping("/feature/notice/thumbup")
@@ -24,12 +23,12 @@ public class NoticeThumbUpFlowResource implements NoticeThumbUpFlowFacade {
     private final NoticeThumbUpFlow noticeThumbUpFlow;
 
     @Override
-    @PostMapping("/register-notice-thumb-up/command")
-    public CommandResponse registerNoticeThumbUp(@RequestBody RegisterNoticeThumbUpCommand command) {
+    @PostMapping("/toggle-notice-thumb-up/command")
+    public CommandResponse toggleNoticeThumbUp(@RequestBody ToggleNoticeThumbUpCommand command) {
         //
         command.validate();
         NoticeThumbUpRecordCdo noticeThumbUpRecordCdo = command.genNoticeThumbUpRecordCdo();
-        String entityId = noticeThumbUpFlow.registerNoticeThumbUp(noticeThumbUpRecordCdo.genThumbUpRecordCdo());
+        String entityId = noticeThumbUpFlow.toggleNoticeThumbUp(noticeThumbUpRecordCdo.genThumbUpRecordCdo());
         command.setResponse(entityId);
         return command.getResponse();
     }

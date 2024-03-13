@@ -7,6 +7,7 @@ package io.vizend.board.facade.feature.bulletin.comment.query;
 
 import io.vizend.board.aggregate.post.domain.entity.Comment;
 import io.vizend.board.feature.bulletin.comment.domain.sdo.BulletinCommentCdo;
+import io.vizend.board.feature.bulletin.comment.domain.sdo.BulletinCommentRdo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.AllArgsConstructor;
@@ -23,7 +24,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @AuthorizedRole
-public class FindBulletinCommentsQuery extends QueryRequest<List<Comment>> {
+public class FindBulletinCommentsQuery extends QueryRequest<List<BulletinCommentRdo>> {
     //
     private String postId;
 

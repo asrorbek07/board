@@ -23,13 +23,13 @@ import java.util.List;
 import io.vizend.board.facade.feature.qna.board.query.FindQnaBoardsQuery;
 
 @RestController
-@RequestMapping("/feature/qan/board")
+@RequestMapping("/feature/qna/board")
 @RequiredArgsConstructor
 public class QnaBoardSeekResource implements QnaBoardSeekFacade {
     private final QnaBoardSeek qanBoardSeek;
 
     @Override
-    @PostMapping("/find-qan-board/query")
+    @PostMapping("/find-qna-board/query")
     public QueryResponse<Board> findQanBoard(@RequestBody FindQnaBoardQuery query) {
         /* Gen by Vizend Studio v5.1.0 */
         query.validate();
@@ -40,7 +40,7 @@ public class QnaBoardSeekResource implements QnaBoardSeekFacade {
     }
 
     @Override
-    @PostMapping("/find-qan-boards/query")
+    @PostMapping("/find-qna-boards/query")
     public QueryResponse<List<Board>> findQanBoards(@RequestBody FindQnaBoardsQuery query) {
         /* Gen by Vizend Studio v5.1.0 */
         query.validate();

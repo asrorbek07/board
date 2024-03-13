@@ -5,10 +5,11 @@ import io.vizend.board.aggregate.board.domain.entity.Board;
 import io.vizend.board.aggregate.board.domain.logic.BoardLogic;
 import io.vizend.board.aggregate.post.domain.entity.Post;
 import io.vizend.board.aggregate.post.domain.entity.ReadCheck;
+import io.vizend.board.aggregate.post.domain.entity.ThumbUpRecord;
 import io.vizend.board.aggregate.post.domain.entity.sdo.PostCdo;
-import io.vizend.board.aggregate.post.domain.entity.vo.ReportOption;
 import io.vizend.board.aggregate.post.domain.logic.PostLogic;
 import io.vizend.board.aggregate.post.domain.logic.ReadCheckLogic;
+import io.vizend.board.aggregate.post.domain.logic.ThumbUpRecordLogic;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,7 @@ public class PostAction {
     private final BoardLogic boardLogic;
     private final PostLogic postLogic;
     private final ReadCheckLogic readCheckLogic;
+    private final ThumbUpRecordLogic thumbUpRecordLogic;
 
     public String registerPost(PostCdo postCdo) {
         //
@@ -35,9 +37,6 @@ public class PostAction {
         if (postCdo.getCommentRule() == null) {
             postCdo.setCommentRule(board.getBoardPolicy().getCommentRule());
         }
-        if (postCdo.getReportOption()==null){
-            postCdo.setReportOption(ReportOption.sample());
-        }
         String postId = postLogic.registerPost(postCdo);
         boardLogic.modifyBoard(board.getId(), NameValueList.of("postSequence", String.valueOf(postSequence + 1)));
         return postId;
@@ -50,6 +49,10 @@ public class PostAction {
 
     public void removePost(String postId) {
         //
+        for (ThumbUpRecord thumbUpRecord : thumbUpRecordLogic.findAllBySentenceId(postId)) {
+            thumbUpRecordLogic.removeThumbUpRecord(thumbUpRecord.getId());
+        }
+
         for (ReadCheck readCheck : readCheckLogic.findReadChecks(postId)) {
             readCheckLogic.removeReadCheck(readCheck.getId());
         }

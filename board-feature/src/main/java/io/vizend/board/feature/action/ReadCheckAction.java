@@ -1,5 +1,6 @@
 package io.vizend.board.feature.action;
 
+import io.vizend.board.aggregate.post.domain.entity.Post;
 import io.vizend.board.aggregate.post.domain.entity.ReadCheck;
 import io.vizend.board.aggregate.post.domain.entity.sdo.ReadCheckCdo;
 import io.vizend.board.aggregate.post.domain.logic.PostLogic;
@@ -17,23 +18,14 @@ public class ReadCheckAction {
     private final PostLogic postLogic;
     private final ReadCheckLogic readCheckLogic;
 
-    public String registerReadCheck(ReadCheckCdo readCheckCdo) {
+    public String readPost(Post post) {
         //
-        String postId = readCheckCdo.getPostId();
-        validatePost(postId);
+        ReadCheckCdo readCheckCdo = new ReadCheckCdo(post.getId());
         ReadCheck readCheck = readCheckLogic.findReadCheckByPostIdAndReader(readCheckCdo.getPostId(),readCheckCdo.getReader());
         if (readCheck==null) {
             return readCheckLogic.registerReadCheck(readCheckCdo);
         }
         return readCheck.getId();
-    }
-
-    public void deleteReadChecks(String postId) {
-        validatePost(postId);
-        List<ReadCheck> readChecks = findReadChecks(postId);
-        for (ReadCheck readCheck : readChecks) {
-            readCheckLogic.removeReadCheck(readCheck.getId());
-        }
     }
     public List<ReadCheck> findReadChecks(String postId){
         return readCheckLogic.findReadChecks(postId);

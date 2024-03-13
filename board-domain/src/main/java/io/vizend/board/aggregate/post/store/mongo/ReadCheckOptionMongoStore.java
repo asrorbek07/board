@@ -17,7 +17,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class ReadCheckOptionMongoStore implements ReadCheckOptionStore {
@@ -40,7 +39,7 @@ public class ReadCheckOptionMongoStore implements ReadCheckOptionStore {
 
     @Override
     public ReadCheck findByPostIdAndReader(String postId, IdName reader) {
-        ReadCheckDoc readCheckDoc = readCheckMongoRepository.findByPostIdAndReaderIdAndReaderName(postId, reader.getId(), reader.getName()).orElse(null);
+        ReadCheckDoc readCheckDoc = readCheckMongoRepository.findByPostIdAndReaderId(postId, reader.getId()).orElse(null);
         if (readCheckDoc != null) {
             return readCheckDoc.toDomain();
         }

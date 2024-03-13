@@ -15,9 +15,10 @@ import io.vizend.board.aggregate.post.domain.entity.Post;
 import io.vizend.board.facade.feature.bulletin.post.query.FindBulletinPostQuery;
 import java.util.List;
 import io.vizend.board.facade.feature.bulletin.post.query.FindBulletinPostsQuery;
+import io.vizend.board.feature.bulletin.post.domain.sdo.BulletinPostRdo;
 
 public interface BulletinPostSeekFacade {
     /* Gen by Vizend Studio v5.1.0 */
-    QueryResponse<Post> findBulletinPost(FindBulletinPostQuery query);
-    QueryResponse<List<Post>> findBulletinPosts(FindBulletinPostsQuery query);
+    QueryResponse<BulletinPostRdo> findBulletinPost(FindBulletinPostQuery query);
+    QueryResponse<List<BulletinPostRdo>> findBulletinPosts(FindBulletinPostsQuery query);
 }

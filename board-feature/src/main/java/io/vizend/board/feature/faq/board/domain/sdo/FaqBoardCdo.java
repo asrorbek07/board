@@ -18,7 +18,6 @@ public class FaqBoardCdo extends CreationDataObject {
     //
     private String title;
     private String description;
-    private BoardPolicy boardPolicy;
 
     public static FaqBoardCdo fromJson(String json) {
         //
@@ -32,7 +31,6 @@ public class FaqBoardCdo extends CreationDataObject {
                 .builder()
                 .title(boardCdo.getTitle())
                 .description(boardCdo.getDescription())
-                .boardPolicy(boardCdo.getBoardPolicy())
                 .build();
     }
 
@@ -47,7 +45,7 @@ public class FaqBoardCdo extends CreationDataObject {
                 .title(this.title)
                 .description(this.description)
                 .boardType(BoardType.FAQBoard)
-                .boardPolicy(this.boardPolicy)
+                .boardPolicy(BoardPolicy.genFaqBoardPolicy())
                 .build();
     }
 

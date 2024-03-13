@@ -15,9 +15,10 @@ import io.vizend.board.aggregate.post.domain.entity.Post;
 import io.vizend.board.facade.feature.faq.post.query.FindFaqPostQuery;
 import java.util.List;
 import io.vizend.board.facade.feature.faq.post.query.FindFaqPostsByBoardIdQuery;
+import io.vizend.board.feature.faq.post.domain.sdo.FaqPostRdo;
 
 public interface FaqPostSeekFacade {
     /* Gen by Vizend Studio v5.1.0 */
-    QueryResponse<Post> findFaqPost(FindFaqPostQuery query);
-    QueryResponse<List<Post>> findFaqPosts(FindFaqPostsByBoardIdQuery query);
+    QueryResponse<FaqPostRdo> findFaqPost(FindFaqPostQuery query);
+    QueryResponse<List<FaqPostRdo>> findFaqPosts(FindFaqPostsByBoardIdQuery query);
 }

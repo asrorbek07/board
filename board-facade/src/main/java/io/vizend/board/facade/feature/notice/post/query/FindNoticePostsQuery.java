@@ -7,6 +7,7 @@ package io.vizend.board.facade.feature.notice.post.query;
 
 import io.vizend.board.aggregate.post.domain.entity.Post;
 import io.vizend.board.feature.notice.board.domain.sdo.NoticeBoardCdo;
+import io.vizend.board.feature.notice.post.domain.sdo.NoticePostRdo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.AllArgsConstructor;
@@ -23,7 +24,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @AuthorizedRole
-public class FindNoticePostsQuery extends QueryRequest<List<Post>> {
+public class FindNoticePostsQuery extends QueryRequest<List<NoticePostRdo>> {
     //
     private String boardId;
 

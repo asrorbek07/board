@@ -10,15 +10,18 @@
 */
 package io.vizend.board.feature.bulletin.post.flow;
 
-import io.vizend.board.aggregate.board.domain.logic.BoardLogic;
-import io.vizend.board.aggregate.post.domain.logic.PostLogic;
+import io.vizend.board.aggregate.post.domain.entity.ReadCheck;
+import io.vizend.board.aggregate.post.domain.entity.ThumbUpRecord;
 import io.vizend.board.feature.action.PostAction;
+import io.vizend.board.feature.action.ReadCheckAction;
+import io.vizend.board.feature.action.ThumbUpAction;
+import io.vizend.board.feature.bulletin.post.domain.sdo.BulletinPostRdo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import io.vizend.board.aggregate.post.domain.entity.Post;
 import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -26,14 +29,30 @@ import java.util.NoSuchElementException;
 public class BulletinPostSeek {
     //
     private final PostAction postAction;
+    private final ReadCheckAction readCheckAction;
+    private final ThumbUpAction thumbUpAction;
 
-    public Post findBulletinPost(String postId) {
+    public BulletinPostRdo findBulletinPost(String postId) {
         // 
-        return postAction.findPost(postId);
+        Post post = postAction.findPost(postId);
+        readCheckAction.readPost(post);
+        return genBulletinPostRdo(post);
     }
 
-    public List<Post> findBulletinPosts(String boardId) {
+    private BulletinPostRdo genBulletinPostRdo(Post post) {
         //
-        return postAction.findPosts(boardId);
+        String questionId = post.getId();
+        List<ThumbUpRecord> thumbUps = thumbUpAction.findThumbUps(questionId);
+        List<ReadCheck> readChecks = readCheckAction.findReadChecks(questionId);
+        return BulletinPostRdo.builder()
+                .post(post)
+                .thumbUps(thumbUps)
+                .readChecks(readChecks)
+                .build();
+    }
+
+    public List<BulletinPostRdo> findBulletinPosts(String boardId) {
+        //
+        return postAction.findPosts(boardId).stream().map(this::genBulletinPostRdo).collect(Collectors.toList());
     }
 }

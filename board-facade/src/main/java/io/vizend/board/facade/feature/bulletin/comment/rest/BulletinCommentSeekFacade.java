@@ -12,12 +12,13 @@ package io.vizend.board.facade.feature.bulletin.comment.rest;
 
 import io.vizend.accent.domain.message.QueryResponse;
 import java.util.List;
-import io.vizend.board.aggregate.post.domain.entity.Comment;
+
 import io.vizend.board.facade.feature.bulletin.comment.query.FindBulletinCommentsQuery;
 import io.vizend.board.facade.feature.bulletin.comment.query.FindBulletinCommentQuery;
+import io.vizend.board.feature.bulletin.comment.domain.sdo.BulletinCommentRdo;
 
 public interface BulletinCommentSeekFacade {
     /* Gen by Vizend Studio v5.1.0 */
-    QueryResponse<List<Comment>> findBulletinComments(FindBulletinCommentsQuery query);
-    QueryResponse<Comment> findBulletinComment(FindBulletinCommentQuery query);
+    QueryResponse<List<BulletinCommentRdo>> findBulletinComments(FindBulletinCommentsQuery query);
+    QueryResponse<BulletinCommentRdo> findBulletinComment(FindBulletinCommentQuery query);
 }

@@ -2,9 +2,11 @@ package io.vizend.board.feature.action;
 
 import io.vizend.accent.domain.type.NameValueList;
 import io.vizend.board.aggregate.post.domain.entity.Reply;
+import io.vizend.board.aggregate.post.domain.entity.ThumbUpRecord;
 import io.vizend.board.aggregate.post.domain.entity.sdo.ReplyCdo;
 import io.vizend.board.aggregate.post.domain.logic.CommentLogic;
 import io.vizend.board.aggregate.post.domain.logic.ReplyLogic;
+import io.vizend.board.aggregate.post.domain.logic.ThumbUpRecordLogic;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +19,7 @@ public class ReplyAction {
     //
     private final CommentLogic commentLogic;
     private final ReplyLogic replyLogic;
+    private final ThumbUpRecordLogic thumbUpRecordLogic;
 
     public String registerReply(ReplyCdo replyCdo) {
         //
@@ -35,13 +38,12 @@ public class ReplyAction {
 
     public void removeReply(String replyId) {
         //
+        for (ThumbUpRecord thumbUpRecord : thumbUpRecordLogic.findAllBySentenceId(replyId)) {
+            thumbUpRecordLogic.removeThumbUpRecord(thumbUpRecord.getId());
+        }
         replyLogic.removeReply(replyId);
     }
 
-    public Reply findReply(String replyId) {
-        //
-        return replyLogic.findReply(replyId);
-    }
 
     public List<Reply> findReplies(String commentId) {
         //

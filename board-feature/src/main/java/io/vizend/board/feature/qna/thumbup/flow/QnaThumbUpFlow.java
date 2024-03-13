@@ -3,6 +3,11 @@
  This software is the proprietary of NEXTREE Inc.
  @since 2014. 6. 10.
 */
+/*
+ COPYRIGHT (c) NEXTREE Inc. 2014
+ This software is the proprietary of NEXTREE Inc.
+ @since 2014. 6. 10.
+*/
 package io.vizend.board.feature.qna.thumbup.flow;
 
 import io.vizend.board.aggregate.post.domain.entity.sdo.ThumbUpRecordCdo;
@@ -19,8 +24,9 @@ public class QnaThumbUpFlow {
     //
     private final ThumbUpAction thumbUpAction;
 
-    public String registerQnaThumbUp(ThumbUpRecordCdo thumbUpRecordCdo) {
+
+    public String toggleQnaThumbUp(ThumbUpRecordCdo thumbUpRecordCdo) {
         //
-        return thumbUpAction.registerThumbUp(thumbUpRecordCdo);
+        return thumbUpAction.toggleThumbUp(thumbUpRecordCdo);
     }
 }

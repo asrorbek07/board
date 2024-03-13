@@ -5,8 +5,8 @@
 */
 package io.vizend.board.facade.feature.qna.question.query;
 
-import io.vizend.board.aggregate.post.domain.entity.Post;
 import io.vizend.board.feature.qna.question.domain.sdo.QnaQuestionCdo;
+import io.vizend.board.feature.qna.question.domain.sdo.QnaQuestionRdo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.AllArgsConstructor;
@@ -23,7 +23,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @AuthorizedRole
-public class FindQnaQuestionsQuery extends QueryRequest<List<Post>> {
+public class FindQnaQuestionsQuery extends QueryRequest<List<QnaQuestionRdo>> {
     //
     private String boardId;
 

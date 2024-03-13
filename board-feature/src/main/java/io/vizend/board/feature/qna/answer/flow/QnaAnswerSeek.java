@@ -10,12 +10,16 @@
 */
 package io.vizend.board.feature.qna.answer.flow;
 
+import io.vizend.board.aggregate.post.domain.entity.ThumbUpRecord;
 import io.vizend.board.feature.action.CommentAction;
+import io.vizend.board.feature.action.ThumbUpAction;
+import io.vizend.board.feature.qna.answer.domain.sdo.QnaAnswerRdo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import io.vizend.board.aggregate.post.domain.entity.Comment;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -23,14 +27,25 @@ import java.util.List;
 public class QnaAnswerSeek {
     //
     private final CommentAction commentAction;
+    private final ThumbUpAction thumbUpAction;
 
-    public Comment findQnaAnswer(String answerId) {
+    public QnaAnswerRdo findQnaAnswer(String answerId) {
         // 
-        return commentAction.findComment(answerId);
+        Comment comment = commentAction.findComment(answerId);
+        return genQnaAnswerRdo(comment);
     }
 
-    public List<Comment> findQnaAnswers(String questionId) {
+    private QnaAnswerRdo genQnaAnswerRdo(Comment comment) {
         //
-        return commentAction.findComments(questionId);
+        List<ThumbUpRecord> thumbUps = thumbUpAction.findThumbUps(comment.getId());
+        return QnaAnswerRdo.builder()
+                .comment(comment)
+                .thumbUps(thumbUps)
+                .build();
+    }
+
+    public List<QnaAnswerRdo> findQnaAnswers(String questionId) {
+        //
+        return commentAction.findComments(questionId).stream().map(this::genQnaAnswerRdo).collect(Collectors.toList());
     }
 }
