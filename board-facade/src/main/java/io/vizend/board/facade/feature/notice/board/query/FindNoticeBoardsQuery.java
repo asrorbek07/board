@@ -19,7 +19,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AuthorizedRole
+// @AuthorizedRole
 public class FindNoticeBoardsQuery extends QueryRequest<List<Board>> {
     //
 

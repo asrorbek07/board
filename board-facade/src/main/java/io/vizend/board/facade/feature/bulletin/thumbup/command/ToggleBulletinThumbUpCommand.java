@@ -20,7 +20,7 @@ import org.springframework.util.Assert;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@AuthorizedRole
+// @AuthorizedRole
 public class ToggleBulletinThumbUpCommand extends CommandRequest {
     //
     private String sentenceType;

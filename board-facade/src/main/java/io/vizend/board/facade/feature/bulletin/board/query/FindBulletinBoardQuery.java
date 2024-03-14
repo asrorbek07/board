@@ -20,7 +20,7 @@ import org.springframework.util.Assert;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@AuthorizedRole
+// @AuthorizedRole
 public class FindBulletinBoardQuery extends QueryRequest<Board> {
     //
     private String boardId;

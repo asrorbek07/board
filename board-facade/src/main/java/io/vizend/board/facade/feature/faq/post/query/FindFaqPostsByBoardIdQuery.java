@@ -23,7 +23,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@AuthorizedRole
+// @AuthorizedRole
 public class FindFaqPostsByBoardIdQuery extends QueryRequest<List<FaqPostRdo>> {
     //
     private String boardId;

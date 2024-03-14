@@ -20,7 +20,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AuthorizedRole
+// @AuthorizedRole
 public class FindBulletinBoardsQuery extends QueryRequest<List<Board>> {
     //
 

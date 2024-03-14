@@ -18,7 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AuthorizedRole
+// @AuthorizedRole
 public class FindFaqBoardsQuery extends QueryRequest<List<Board>> {
     //
 

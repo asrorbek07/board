@@ -21,7 +21,7 @@ import org.springframework.util.Assert;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@AuthorizedRole()
+// @AuthorizedRole
 public class ModifyFaqPostCommand extends CommandRequest {
     //
     private String postId;

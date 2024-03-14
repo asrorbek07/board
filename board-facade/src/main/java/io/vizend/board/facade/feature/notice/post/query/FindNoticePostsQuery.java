@@ -23,7 +23,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@AuthorizedRole
+// @AuthorizedRole
 public class FindNoticePostsQuery extends QueryRequest<List<NoticePostRdo>> {
     //
     private String boardId;

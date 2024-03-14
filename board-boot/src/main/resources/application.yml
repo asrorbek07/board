@@ -18,7 +18,7 @@ vizend:
   prologue:
     enabled: false
     janitor:
-      mode: nats
+      mode: local
       bootstrap-address: 127.0.0.1:4222
       id: io.vizend.${spring.application.name}
       subscriptions: >
@@ -48,11 +48,11 @@ vizend:
   prologue:
     enabled: false
     internal-auth:
-      password: narasecret-internal
+      password: vizendsecret-internal
       rest.base-url: http://localhost:9002
     dock:
-      #      enabled: false
-      enabled: true
+      enabled: false
+#      enabled: true
       rest.base-url: http://localhost:9001
     xray:
       enabled: false

@@ -23,7 +23,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@AuthorizedRole()
+// @AuthorizedRole
 public class FindBulletinRepliesQuery extends QueryRequest<List<BulletinReplyRdo>> {
     //
     private String commentId;

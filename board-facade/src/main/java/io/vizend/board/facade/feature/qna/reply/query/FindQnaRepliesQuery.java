@@ -23,7 +23,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@AuthorizedRole
+// @AuthorizedRole
 public class FindQnaRepliesQuery extends QueryRequest<List<QnaReplyRdo>> {
     //
     private String commentId;

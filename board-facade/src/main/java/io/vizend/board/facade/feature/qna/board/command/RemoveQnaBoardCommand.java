@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@AuthorizedRole
+// @AuthorizedRole
 public class RemoveQnaBoardCommand extends CommandRequest {
     //
     private String boardId;

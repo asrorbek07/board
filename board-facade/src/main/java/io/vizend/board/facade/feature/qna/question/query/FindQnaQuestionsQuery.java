@@ -22,7 +22,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@AuthorizedRole
+// @AuthorizedRole
 public class FindQnaQuestionsQuery extends QueryRequest<List<QnaQuestionRdo>> {
     //
     private String boardId;

@@ -22,7 +22,7 @@ import org.springframework.util.Assert;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@AuthorizedRole
+// @AuthorizedRole
 public class RegisterNoticeBoardCommand extends CommandRequest {
     //
     private String title;

@@ -21,7 +21,7 @@ import org.springframework.util.Assert;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@AuthorizedRole
+// @AuthorizedRole
 public class FindBulletinCommentQuery extends QueryRequest<BulletinCommentRdo> {
     //
     private String commentId;
