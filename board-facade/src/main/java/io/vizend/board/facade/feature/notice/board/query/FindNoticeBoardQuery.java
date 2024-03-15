@@ -23,11 +23,11 @@ import org.springframework.util.Assert;
 @NoArgsConstructor
 public class FindNoticeBoardQuery extends QueryRequest<Board> {
     //
-    private String postId;
+    private String boardId;
 
     public void validate() {
         //
-        Assert.notNull(postId,"postId is required");
+        Assert.notNull(boardId,"postId is required");
     }
 
     @Override

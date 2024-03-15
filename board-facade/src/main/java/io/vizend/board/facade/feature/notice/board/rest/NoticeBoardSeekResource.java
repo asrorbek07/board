@@ -34,8 +34,8 @@ public class NoticeBoardSeekResource implements NoticeBoardSeekFacade {
     public QueryResponse<Board> findNoticeBoard(@RequestBody FindNoticeBoardQuery query) {
         /* Gen by Vizend Studio v5.1.0 */
         query.validate();
-        String postId = query.getPostId();
-        Board response = noticeBoardSeek.findNoticeBoard(postId);
+        String boardId = query.getBoardId();
+        Board response = noticeBoardSeek.findNoticeBoard(boardId);
         query.setResponse(response);
         return query.getResponse();
     }
